@@ -14,7 +14,10 @@
       }  
       else  
       {  
-           header('location:inicio.php');  
+
+
+        
+           header('location:inicio.php');  //adsasdsa
       }  
       ?>
 
