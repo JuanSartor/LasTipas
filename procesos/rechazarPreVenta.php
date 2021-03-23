@@ -10,4 +10,7 @@ $obj= new crud();
 echo $obj->rechazarPreVentaBd($_POST['id'],
     $_POST['descripcion']);
 
+
+
+//sadsaddsa
  ?>
