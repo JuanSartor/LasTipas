@@ -297,7 +297,7 @@
     <input style="text-transform: capitalize;" type="text"  class="form-control input-sm" id="nombre" name="nombre" required minlength="4" maxlength="59"   pattern="^[a-zA-Z\s]+">
     <label id="apellidoLabel" >Apellido <label style="color: red;">*</label></label>
     <input style="text-transform: capitalize;" type="text" class="form-control input-sm" id="apellido" name="apellido" required minlength="4" maxlength="39"   pattern="^[a-zA-Z\s]+">
-    <label id="dniLabel">DNI <label style="color: red;">*</label></label>
+    <label id="dniLabel">DNI/CUIT <label style="color: red;">*</label></label>
     <input type="text" class="form-control input-sm" id="dni" name="dni" required maxlength="24" minlength="4"    pattern="[0-9]+">
 
 
@@ -356,7 +356,7 @@
     <input style="text-transform: capitalize;" type="text"  class="form-control input-sm" id="nombreU" name="nombreU" required minlength="4" maxlength="59"   pattern="^[a-zA-Z\s]+">
     <label id="apellidoLabelU" >Apellido <label style="color: red;">*</label></label>
     <input style="text-transform: capitalize;" type="text" class="form-control input-sm" id="apellidoU" name="apellidoU" required minlength="4" maxlength="39"   pattern="^[a-zA-Z\s]+">
-    <label id="dniLabelU">DNI <label style="color: red;">*</label></label>
+    <label id="dniLabelU">DNI/CUIT <label style="color: red;">*</label></label>
     <input type="text" class="form-control input-sm" id="dniU" name="dniU" required maxlength="24" minlength="4"    pattern="[0-9]+">
 
 

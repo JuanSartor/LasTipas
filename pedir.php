@@ -940,7 +940,11 @@ var btn = document.createElement("TR");
 document.getElementById("tablaApedir").appendChild(btn);
 
 
-
+// aca tenes q seguir e ir guardando las comandas, ojo tenes q guardar el id y ver a q tabla pertenece
+// si es bebida comida o postre
+// y tenes que guardar en comandas la comandas
+// en link coman elementos para la referencia de cada elemento a 1 comandas
+// y en pedido comanda a un 1 varias comandas
 
 
 
