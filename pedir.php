@@ -187,6 +187,7 @@
                                             <a class="nav-link" href="tipoPostre.php">Tipo de Postres</a>
                                         </li>
           
+          
                                     </ul>
                                 </div>
                             </li>
@@ -273,25 +274,30 @@
       <th scope="col">Producto</th>
       <th scope="col">Precio U</th>
       <th scope="col">Cantidad</th>
+      <th scope="col">Agregar/Quitar</th>
       <th scope="col">Total</th>
       
     </tr>
   </thead>
   <tbody>
    
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
+ 
   </tbody>
 </table>
 
+<hr>
+   <br>
 
-  
 
 
+<div class="row">
+
+<div class="col-10"></div>
+
+<button type="button"  class="btn btn-primary mb-1" disabled   id="btnPedirComanda" 
+ style="width: 150px; height: 38px; border-radius: 5px;"> Pedir</button>
+
+ </div>
                         
                         <!-- <div id="tablaDatatable"></div> -->
 
@@ -927,17 +933,39 @@ function cargarRadioBebidas(){
 
 <script>
 
-function agregarElementoAPedido(tipo,id,elemento){
+function agregarElementoAPedido(tipo,id,elemento,precio){
        
     console.log(tipo);
     console.log(id);
     console.log(elemento);
 
-    var fila="<tr><td>"+tipo+"</td><td>"+id+"</td><td>"+elemento+"</td><td>"+'pruebaaaa'+"</td></tr>";
+    if(document.getElementById("tablaApedir")==null){
+        console.log("estoy vaciita");
+    }
+
+    var fila="<tr><td>"+elemento+"</td><td>"+precio+"</td><td>"+1+"</td><td>"+
+    " <span class='btn btn-success btn-sm'><span class='fas fa-plus-circle'></span></span><span class='btn btn-danger btn-sm'><span class='fas fa-minus-circle'></span></span>"
+    +"</td><td>"+65+"</td></tr>";
+
+  
+
+// seguir de aca, cada vez q sume tenes q agregar uno a la cantidad y recalcular el total
+
+
+
 
 var btn = document.createElement("TR");
    btn.innerHTML=fila;
 document.getElementById("tablaApedir").appendChild(btn);
+
+if(document.getElementById("tablaApedir")!=null){
+
+
+   
+    document.getElementById("btnPedirComanda").disabled=false;
+       
+
+}
 
 
 // aca tenes q seguir e ir guardando las comandas, ojo tenes q guardar el id y ver a q tabla pertenece
