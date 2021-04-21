@@ -944,7 +944,7 @@ function agregarElementoAPedido(tipo,id,elemento,precio){
     }
 
     var fila="<tr><td>"+elemento+"</td><td>"+precio+"</td><td>"+1+"</td><td>"+
-    " <span class='btn btn-success btn-sm'><span class='fas fa-plus-circle'></span></span><span class='btn btn-danger btn-sm'><span class='fas fa-minus-circle'></span></span>"
+    " <span class='btn btn-success btn-sm'><span class='fas fa-plus-circle' onclick='agregarItem('tipo,id')' ></span></span><span class='btn btn-danger btn-sm'><span class='fas fa-minus-circle' onclick='restarItem()'></span></span>"
     +"</td><td>"+65+"</td></tr>";
 
   
@@ -977,5 +977,19 @@ if(document.getElementById("tablaApedir")!=null){
 
 
    }
+
+</script>
+
+<script>
+function agregarItem(tipo,id){
+
+    console.log(tipo+" "+id);
+}
+
+function restarItem(){
+
+    console.log("yeahPra");
+}
+
 
 </script>
