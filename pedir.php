@@ -938,13 +938,15 @@ function agregarElementoAPedido(tipo,id,elemento,precio){
     console.log(tipo);
     console.log(id);
     console.log(elemento);
+    var par=id;
+    
 
     if(document.getElementById("tablaApedir")==null){
         console.log("estoy vaciita");
     }
 
     var fila="<tr><td>"+elemento+"</td><td>"+precio+"</td><td>"+1+"</td><td>"+
-    " <span class='btn btn-success btn-sm'><span class='fas fa-plus-circle' onclick='agregarItem('tipo,id')' ></span></span><span class='btn btn-danger btn-sm'><span class='fas fa-minus-circle' onclick='restarItem()'></span></span>"
+    " <span class='btn btn-success btn-sm'><span class='fas fa-plus-circle'  onclick='agregarItem("+par+")'></span></span><span class='btn btn-danger btn-sm'><span class='fas fa-minus-circle' onclick='restarItem()'></span></span>"
     +"</td><td>"+65+"</td></tr>";
 
   
@@ -981,10 +983,11 @@ if(document.getElementById("tablaApedir")!=null){
 </script>
 
 <script>
-function agregarItem(tipo,id){
+function agregarItem(tipoo){
 
-    console.log(tipo+" "+id);
+    console.log(tipoo);
 }
+
 
 function restarItem(){
 
