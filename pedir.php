@@ -933,12 +933,32 @@ function cargarRadioBebidas(){
 
 <script>
 
+var valorTipo=0;
+var ValorId=0;
+
 function agregarElementoAPedido(tipo,id,elemento,precio){
-       
-    console.log(tipo);
-    console.log(id);
-    console.log(elemento);
-    var par=id;
+      
+    // console.log(tipo);
+    // console.log(id);
+    // console.log(elemento);
+   
+    switch(tipo){
+
+        case 'bebida':
+            tipoO=1;
+            break;
+        
+        case 'plato':
+            tipoO=2;
+            break;
+        case 'postre':
+            tipoO=1;
+            break;
+
+
+    }
+
+
     
 
     if(document.getElementById("tablaApedir")==null){
@@ -946,7 +966,7 @@ function agregarElementoAPedido(tipo,id,elemento,precio){
     }
 
     var fila="<tr><td>"+elemento+"</td><td>"+precio+"</td><td>"+1+"</td><td>"+
-    " <span class='btn btn-success btn-sm'><span class='fas fa-plus-circle'  onclick='agregarItem("+par+")'></span></span><span class='btn btn-danger btn-sm'><span class='fas fa-minus-circle' onclick='restarItem()'></span></span>"
+    " <span class='btn btn-success btn-sm' ><span class='fas fa-plus-circle'   onclick='agregarItem("+id+"),agregarItem2("+tipoO+")'></span></span><span class='btn btn-danger btn-sm'><span class='fas fa-minus-circle' onclick='restarItem()'></span></span>"
     +"</td><td>"+65+"</td></tr>";
 
   
@@ -980,13 +1000,57 @@ if(document.getElementById("tablaApedir")!=null){
 
    }
 
+
+// con este metodo seteo el id de la base de datos del producto, hice 2 metodos xq no me debaja pasar mas de un parametro
+// y me canse y fue la solucion q encontre
+
+
+   function agregarItem(tipoo){
+// console.log(tipoo);
+
+
+ValorId=tipoo;
+
+
+
+}
+
+
+// con este metodo seteo q tipo de producto es y llamo al metodo para q actualice el valor de la tabla, es decir sume uno al valor q esta
+
+function agregarItem2(tipoo){
+
+// console.log(tipoo);
+ValorTipo=tipoo;
+
+sumarValorATabla();
+}
+
+
+function sumarValorATabla(){
+    
+// seguir de aca, con lo de abajo obtengo el valor de la celda exacta deberia recorrer todas
+// y donde coincide actualizar
+
+
+
+
+    console.log(document.getElementById("tablaApedir").getElementsByTagName("tr")[1].getElementsByTagName("td")[1]);
+
+    
+
+}
+
+
+
+
+
+
+
+
 </script>
 
 <script>
-function agregarItem(tipoo){
-
-    console.log(tipoo);
-}
 
 
 function restarItem(){

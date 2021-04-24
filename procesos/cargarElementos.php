@@ -13,15 +13,16 @@ $arrEl=explode("-", $_POST["banderaElemento"]);
 switch ($arrEl[1]) {
     case 'b':
         $sql="SELECT id,descripcion,precio from bebidas where eliminado='NO' and id_bebida='$arrEl[0]'";
+        $valorTipo= 'bebida';
       
         break;
     case 'c':
         $sql="SELECT id,descripcion,precio from platos where eliminado='NO' and id_tipo_plato='$arrEl[0]'";
-        
+        $valorTipo= 'plato';
         break;
     case 'd':
         $sql="SELECT id,descripcion,precio from postres where eliminado='NO' and id_postre='$arrEl[0]'";
-     
+        $valorTipo= 'postre';
         break;
 }
 
@@ -39,7 +40,7 @@ while ($mostrar=mysqli_fetch_array($resultadoM)){
 
 
     
-$cadena=$cadena.'<button type="button" onclick=agregarElementoAPedido("'. $arrEl[1].'","'.$mostrar[0].'","'.$mostrar[1].'","'.$mostrar[2].'") class="btn btn-primary mb-1" style="width: 150px; height: 38px; border-radius: 5px;"   id='.$mostrar[0].'  value='.$mostrar[0].'>
+$cadena=$cadena.'<button type="button" onclick=agregarElementoAPedido("'. $valorTipo.'","'.$mostrar[0].'","'.$mostrar[1].'","'.$mostrar[2].'") class="btn btn-primary mb-1" style="width: 150px; height: 38px; border-radius: 5px;"   id='.$mostrar[0].'  value='.$mostrar[0].'>
 '.$mostrar[1].'</button><br>';
 
 }
