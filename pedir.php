@@ -271,6 +271,8 @@
                     <table class="table" id="tablaApedir">
   <thead class="thead-grey">
     <tr>
+    <th scope="col" hidden>ID</th>
+    <th scope="col" hidden>Tipo</th>
       <th scope="col">Producto</th>
       <th scope="col">Precio U</th>
       <th scope="col">Cantidad</th>
@@ -299,7 +301,7 @@
 
  </div>
                         
-                        <!-- <div id="tablaDatatable"></div> -->
+                       
 
                     </div>
                     
@@ -324,23 +326,7 @@
                     
                     
             
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
-       <!--       <div class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                       
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            <div class="text-md-right footer-links d-none d-sm-block">
-                                <a href="javascript: void(0);"> <i class="fab fa-facebook-square"></i></a>
-                                <a href="javascript: void(0);"><i class="fab fa-instagram"></i></a>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+      
             <!-- ============================================================== -->
             <!-- end footer -->
             <!-- ============================================================== -->
@@ -352,157 +338,11 @@
     <!-- ============================================================== -->
     <!-- end main wrapper  -->
     <!-- ============================================================== -->
-    <!-- Optional JavaScript -->
-    <!-- jquery 3.3.1 -->
-   <!--  <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script> -->
-    <!-- bootstap bundle js -->
-     <!-- <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>  -->
+    
     <!-- slimscroll js -->
      <script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
     <!-- main js -->
      <script src="assets/libs/js/main-js.js"></script> 
-    <!-- chart chartist js -->
- <!--    <script src="assets/vendor/charts/chartist-bundle/chartist.min.js"></script> -->
-    <!-- sparkline js -->
-    <!-- <script src="assets/vendor/charts/sparkline/jquery.sparkline.js"></script> -->
-    <!-- morris js -->
-    <!-- <script src="assets/vendor/charts/morris-bundle/raphael.min.js"></script>
-    <script src="assets/vendor/charts/morris-bundle/morris.js"></script> -->
-    <!-- chart c3 js -->
-<!--     <script src="assets/vendor/charts/c3charts/c3.min.js"></script>
-    <script src="assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
-    <script src="assets/vendor/charts/c3charts/C3chartjs.js"></script> -->
-    <!-- <script src="assets/libs/js/dashboard-ecommerce.js"></script> -->
-
-
-
-
-
-
-<!-- Modal agregar -->
-<div class="modal fade" id="agregarnuevosdatosmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nuevo Usuario</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      
-<form id="frmnuevo" onsubmit="nuevoUsuario()"  action="" method="post">
-    <label>Usuario <label style="color: red;">*</label></label>
-    <input type="text" class="form-control input-sm" id="usuario" name="usuario" required minlength="4" maxlength="19">
-    <label>Contraseña <label style="color: red;">*</label></label>
-    <input type="text" class="form-control input-sm" id="pw" name="pw" required minlength="4" maxlength="15">
-    <label>Nombre <label style="color: red;">*</label></label>
-    <input style="text-transform: capitalize;" type="text"  class="form-control input-sm" id="nombre" name="nombre" required minlength="4" maxlength="59" pattern="^[a-zA-Z\s]+">
-    <label>Apellido <label style="color: red;">*</label></label>
-    <input style="text-transform: capitalize;" type="text" class="form-control input-sm" id="apellido" name="apellido" required minlength="4" maxlength="39" pattern="^[a-zA-Z\s]+">
-    <label>Email <label style="color: red;">*</label></label>
-    <input type="email" class="form-control input-sm" id="correo" name="correo" required maxlength="59" minlength="4">
-     <label>DNI</label>
-    <input type="text" class="form-control input-sm" id="dni" name="dni"  maxlength="24" minlength="4" pattern="[0-9]+">
-     <label>Telefono</label>
-    <input type="text" class="form-control input-sm" id="telefono" name="telefono"  maxlength="29" minlength="4" pattern="[0-9]+">
-    <br>
-    
-         <p>Seleccione el permiso para su usuario:</p>
-
-         <div class="row">
-            <div class="col-sm">
-                <input type="radio" name="permisos"   value="Admin">Administrador</div>
-                <div class="col-sm"> <input type="radio" name="permisos" checked  value="Gestor">Gestor</div>
-            </div>
-                 <div class="row">
-            <div class="col-sm">
-                <input type="radio" name="permisos"  value="Vendedor">Vendedor</div>
-                <div class="col-sm"> 
-                    <input type="radio" name="permisos"  value="Telemarketer">Telemarketer</div> 
-            </div>
-
-
-
- 
-  <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" id="btnAgregarNuevo" class="btn btn-primary" >Crear Nuevo</button>
-      </div>
-
-</form>
- 
-
-      </div>
-      
-    </div>
-  </div>
-</div>
-
-
-
-
-<!-- Modal editar -->
-<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Actualizar Usuario</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="frmactualizar"  onsubmit="actualizarGuardarUsuario()"  action="" method="post">
-    
-<label>Usuario</label>
-    <input type="text" class="form-control input-sm" id="usuarioU" name="usuarioU" readonly="true" minlength="4" maxlength="19"> 
-    <label>Contraseña<label style="color: red;">*</label></label>
-    <input type="text" class="form-control input-sm" id="pwU" name="pwU" required minlength="4" maxlength="15">
-    <label>Nombre<label style="color: red;">*</label></label>
-     <input style="text-transform: capitalize;" type="text"  class="form-control input-sm" id="nombreU" name="nombreU" required minlength="4" maxlength="59" pattern="^[a-zA-Z\s]+">
-    <label>Apellido<label style="color: red;">*</label></label>
-     <input style="text-transform: capitalize;" type="text" class="form-control input-sm" id="apellidoU" name="apellidoU" required minlength="4" maxlength="39" pattern="^[a-zA-Z\s]+">
-    <label>Email<label style="color: red;">*</label></label>
-    <input type="email" class="form-control input-sm" id="correoU" name="correoU" required minlength="4" maxlength="59">
-    <label>DNI</label>
-    <input type="text" class="form-control input-sm" id="dniU" name="dniU"  maxlength="24" minlength="4" pattern="[0-9]+">
-     <label>Telefono</label>
-    <input type="text" class="form-control input-sm" id="telefonoU" name="telefonoU"  maxlength="29" minlength="4" pattern="[0-9]+">
-    <br>
-    
-    <p>Seleccione el permiso para su usuario:</p>
-
-    <div class="row">
-       <div class="col-sm">
-           <input type="radio" name="permisosE" id="padU"   value="administrador">Administrador</div>
-           <div class="col-sm"> <input type="radio" id="pgeU" name="permisosE" checked  value="gestor">Gestor</div>
-       </div>
-            <div class="row">
-       <div class="col-sm">
-           <input type="radio" name="permisosE" id="pveU"  value="vendedor">Vendedor</div>
-           <div class="col-sm"> 
-               <input type="radio" name="permisosE" id="pteU"  value="telemarketer">Telemarketer</div> 
-       </div>
-
-
-
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-warning" id="btnGuardar">Guardar</button>
-      </div>
-
-</form>
-
-
-      </div>
-      
-    </div>
-  </div>
-</div>
-
-
-
 
 
 
@@ -514,175 +354,11 @@
 
 
 
-<script type="text/javascript">
-    $(document).ready(function(){
-
-        $('#contenedorMesas').load('cargarMesas.php');
-    });
-
-
-</script>
-
-
-
-<script type="text/javascript">
-    function nuevoUsuario(){
-
-
-        datos=$('#frmnuevo').serialize();
-        $.ajax({
-            type:"POST",
-            data:datos,
-            url:"procesos/agregarUsuario.php",
-            success:function(){
-                    
-                    $('#tablaDatatable').load('tablaUsuarios.php');
-                    alertify.success("Se agrego correctamente");
-                    
-
-            },
-            error:function(){
-
-                alertify.success("No se pudo agregar correctamente");
-                
-            }
-
-
-        });
-
-    }
-
-
-</script>
-
-
-
-<script type="text/javascript">
-    
-
-function actualizarGuardarUsuario(){
-        datos=$('#frmactualizar').serialize();
-        $.ajax({
-            type:"POST",
-            data:datos,
-            url:"procesos/actualizarUsuario.php",
-            success:function(){
-                
-                    $('#tablaDatatable').load('tablaUsuarios.php');
-                    alertify.success("Se actualizo correctamente");
-                    
-
-            },
-            error:function(){
-
-                alertify.success("No se pudo actualizar correctamente");
-                
-            }
-
-        });
-
-    }
- 
-
-
-</script>
-
-
-<script type="text/javascript">
-
-$('#btnAgregarUsuarioNuevo').click(function(){
-datos=$('#frmnuevo').serialize();
-
-            $('#usuario').val('');
-            $('#pw').val('');
-            $('#nombre').val('');
-            $('#apellido').val('');
-            $('#correo').val('');
-
-});
 
 
 
 
 
-function actualizarUsuario(id){
-    $.ajax({
-        type:"POST",
-        data:"id=" + id,
-        url:"procesos/obtenerDatosUsuario.php",
-        success:function(r){
-            datos=jQuery.parseJSON(r);
-            $('#usuarioU').val(datos['usuario']);
-            $('#pwU').val(datos['pw']);
-            $('#nombreU').val(datos['nombre']);
-            $('#apellidoU').val(datos['apellido']);
-            $('#correoU').val(datos['correo']);
-            $('#dniU').val(datos['dni']);
-            $('#telefonoU').val(datos['telefono']);
-            $('#padU').removeAttr("checked");	
-			$('#pveU').removeAttr("checked");	
-            $('#pgeU').removeAttr("checked");	
-            $('#pteU').removeAttr("checked");	
-			if(datos['permisos']=='administrador'){
-				
-				$('#padU').attr('checked', 'checked');
-			
-
-			}
-			else if(datos['permisos']=='vendedor'){
-				
-				$('#pveU').attr('checked', 'checked');
-				
-			}
-            else if(datos['permisos']=='gestor'){
-				
-				$('#pgeU').attr('checked', 'checked');
-				
-			}
-            else{
-				
-				$('#pteU').attr('checked', 'checked');
-				
-			}
-
-            
-
-        }
-    });
-}
-
-
-
-function eliminarDatos(id){
-    alertify.confirm('Eliminar Usuario', '¿Esta seguro que desea eliminar el usuario?',
-        function(){ 
-                $.ajax({
-        type:"POST",
-        data:"id=" + id,
-        url:"procesos/eliminarUsuario.php",
-        success:function(r){
-            
-                $('#tablaDatatable').load('tablaUsuarios.php');
-                alertify.success("Eliminado con exito");
-            
-                
-        },
-        error: function(){
-
-            alertify.error("No se pudo eliminar");
-            
-
-        }
-    });
-
-        }
-        , function(){ });
-
-
-
-}
-
-</script>
 
 
 
@@ -694,17 +370,7 @@ function eliminarDatos(id){
         history.replace(history.forward(1));
     }
 </script>
-<script type="text/javascript">
-    
-function redirPreVenta(){
 
-
-window.location.href='preVenta.php?datos33='+ btoa(0);
-
-                 
-}
-
-</script>
 
 
 <script type="text/javascript">
@@ -717,104 +383,7 @@ window.location.href='preVenta.php?datos33='+ btoa(0);
 
 
 
-<script type="text/javascript">
-    
 
-function agregarMesa(){
-        datos=$('#frmactualizar').serialize();
-        $.ajax({
-            type:"POST",
-            data:datos,
-            url:"procesos/agregarMesa.php",
-            success:function(r){
-                
-                    
-                    alertify.success("Se agrego correctamente");
-                 
-                    $('#contenedorMesas').html(r);
-                    
-
-            },
-            error:function(){
-
-                alertify.success("No se pudo agregar correctamente");
-                
-            }
-
-        });
-
-    }
-
-
-    
-function sacarMesa(){
-        datos=$('#frmactualizar').serialize();
-        $.ajax({
-            type:"POST",
-            data:datos,
-            url:"procesos/sacarMesa.php",
-            success:function(r){
-                
-                    
-                    // alertify.success("Se agrego correctamente");
-                 
-                    $('#contenedorMesas').html(r);
-                    
-
-            },
-            error:function(){
-
-                alertify.success("No se pudo agregar correctamente");
-                
-            }
-
-        });
-
-    }
- 
-
-
-    function reiniciarMesas(){
-       
-        $.ajax({
-            type:"POST",
-            url:"procesos/reiniciarMesas.php",
-            success:function(r){
-                
-                    
-                 alertify.success("Reiniciadas correctamente");
-                 
-                    $('#contenedorMesas').html(r);
-                    
-
-            },
-            error:function(){
-
-                alertify.success("No se pudo agregar correctamente");
-                
-            }
-
-        });
-
-    }
-
-
-
-
-</script>
-<script type="text/javascript">
-    
-      jQuery(document).ready(function($){
-    $(document).ready(function() {
-        $('.mi-selectorMesasDisponibles').select2();
-    });
-
-
-
-
-
-}); 
-</script>
 
 
 <script>
@@ -933,14 +502,16 @@ function cargarRadioBebidas(){
 
 <script>
 
-var valorTipo=0;
+var ValorTipo=0;
 var ValorId=0;
 
-function agregarElementoAPedido(tipo,id,elemento,precio){
+function agregarElementoAPedido(tipo,id,elemento,precio,idBTN){
       
     // console.log(tipo);
     // console.log(id);
     // console.log(elemento);
+    console.log(idBTN);
+    document.getElementById(idBTN).disabled=true;
    
     switch(tipo){
 
@@ -952,7 +523,7 @@ function agregarElementoAPedido(tipo,id,elemento,precio){
             tipoO=2;
             break;
         case 'postre':
-            tipoO=1;
+            tipoO=3;
             break;
 
 
@@ -965,7 +536,7 @@ function agregarElementoAPedido(tipo,id,elemento,precio){
         console.log("estoy vaciita");
     }
 
-    var fila="<tr><td>"+elemento+"</td><td>"+precio+"</td><td>"+1+"</td><td>"+
+    var fila="<tr><td hidden>"+id+"</td><td hidden>"+tipo+"</td><td>"+elemento+"</td><td>"+precio+"</td><td>"+1+"</td><td>"+
     " <span class='btn btn-success btn-sm' ><span class='fas fa-plus-circle'   onclick='agregarItem("+id+"),agregarItem2("+tipoO+")'></span></span><span class='btn btn-danger btn-sm'><span class='fas fa-minus-circle' onclick='restarItem()'></span></span>"
     +"</td><td>"+65+"</td></tr>";
 
@@ -1021,7 +592,27 @@ ValorId=tipoo;
 function agregarItem2(tipoo){
 
 // console.log(tipoo);
-ValorTipo=tipoo;
+
+
+
+switch(tipoo){
+
+case 1:
+    ValorTipo='bebida';
+    break;
+
+case 2:
+    ValorTipo='plato';
+    break;
+case 3:
+    ValorTipo='postre';
+    break;
+
+
+}
+
+
+
 
 sumarValorATabla();
 }
@@ -1029,20 +620,41 @@ sumarValorATabla();
 
 function sumarValorATabla(){
     
-// seguir de aca, con lo de abajo obtengo el valor de la celda exacta deberia recorrer todas
-// y donde coincide actualizar
 
 
+// console.log(document.getElementById("tablaApedir").getElementsByTagName("tr")[1].getElementsByTagName("td")[1].textContent);
+// console.log(document.getElementById("tablaApedir").getElementsByTagName("tr")[1].getElementsByTagName("td")[0].textContent);
+
+//  console.log($('#tablaApedir tr').length);
+    
 
 
-    console.log(document.getElementById("tablaApedir").getElementsByTagName("tr")[1].getElementsByTagName("td")[1]);
+for(i=1; i<$('#tablaApedir tr').length;i++){
+
+if(document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getElementsByTagName("td")[1].textContent==ValorTipo 
+&& document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getElementsByTagName("td")[0].textContent==ValorId){
+
+    valCant=document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getElementsByTagName("td")[4].textContent;
+
+ total=parseInt(valCant)+1;
+ document.getElementById("tablaApedir").rows[i].cells[4].innerHTML = total ;
+
+
+// aca lo de arriba funciona bien tenes q seguir desde aca pasar los datos y cargar la comanda
+//
+//
+// seguir de aca arrribaaaaaaaaa
+
+
 
     
+}
 
 }
 
 
 
+}
 
 
 

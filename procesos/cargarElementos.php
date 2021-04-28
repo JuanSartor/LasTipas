@@ -35,13 +35,18 @@ $resultadoM = mysqli_query($conexion,$sql);
 // <label >Todos</label><br>';
 
 $cadena='';
+
+$contId=0;
 while ($mostrar=mysqli_fetch_array($resultadoM)){
     
 
 
     
-$cadena=$cadena.'<button type="button" onclick=agregarElementoAPedido("'. $valorTipo.'","'.$mostrar[0].'","'.$mostrar[1].'","'.$mostrar[2].'") class="btn btn-primary mb-1" style="width: 150px; height: 38px; border-radius: 5px;"   id='.$mostrar[0].'  value='.$mostrar[0].'>
+$cadena=$cadena.'<button type="button" id='.$contId.' onclick=agregarElementoAPedido("'. $valorTipo.'","'.$mostrar[0].'","'.$mostrar[1].'","'.$mostrar[2].'","'.$contId.'") class="btn btn-primary mb-1" style="width: 150px; height: 38px; border-radius: 5px;" >
 '.$mostrar[1].'</button><br>';
+
+$contId++;
+
 
 }
 
