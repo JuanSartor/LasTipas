@@ -536,7 +536,10 @@ function agregarElementoAPedido(tipo,id,elemento,precio,idBTN){
         console.log("estoy vaciita");
     }
 
-    var fila="<tr><td hidden>"+id+"</td><td hidden>"+tipo+"</td><td>"+elemento+"</td><td>"+precio+"</td><td>"+1+"</td><td>"+
+
+    cadElemento=elemento.replace('+', ' ');
+
+    var fila="<tr><td hidden>"+id+"</td><td hidden>"+tipo+"</td><td>"+cadElemento+"</td><td>"+precio+"</td><td>"+1+"</td><td>"+
     " <span class='btn btn-success btn-sm' ><span class='fas fa-plus-circle'   onclick='agregarItem("+id+"),agregarItem2("+tipoO+")'></span></span><span class='btn btn-danger btn-sm'><span class='fas fa-minus-circle' onclick='restarItem()'></span></span>"
     +"</td><td>"+65+"</td></tr>";
 

@@ -40,12 +40,15 @@ $contId=0;
 while ($mostrar=mysqli_fetch_array($resultadoM)){
     
 
+$cadE=str_replace(' ', "+", $mostrar[1]);
 
+$idBTN='idbtn'.$contId;
     
-$cadena=$cadena.'<button type="button" id='.$contId.' onclick=agregarElementoAPedido("'. $valorTipo.'","'.$mostrar[0].'","'.$mostrar[1].'","'.$mostrar[2].'","'.$contId.'") class="btn btn-primary mb-1" style="width: 150px; height: 38px; border-radius: 5px;" >
+$cadena=$cadena.'<button type="button" id='.$idBTN.' onclick=agregarElementoAPedido("'. $valorTipo.'","'.$mostrar[0].'","'.$cadE.'","'.$mostrar[2].'","'.$idBTN.'") class="btn btn-primary mb-1" style="width: 150px; height: 38px; border-radius: 5px;" >
 '.$mostrar[1].'</button><br>';
 
 $contId++;
+$idBTN='';
 
 
 }
