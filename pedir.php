@@ -505,12 +505,14 @@ function cargarRadioBebidas(){
 var ValorTipo=0;
 var ValorId=0;
 
+var valorTipoRestar=0;
+var valorIdRestar=0;
+
+
+
 function agregarElementoAPedido(tipo,id,elemento,precio,idBTN){
       
-    // console.log(tipo);
-    // console.log(id);
-    // console.log(elemento);
-    console.log(idBTN);
+   
     document.getElementById(idBTN).disabled=true;
    
     switch(tipo){
@@ -540,8 +542,8 @@ function agregarElementoAPedido(tipo,id,elemento,precio,idBTN){
     cadElemento=elemento.replace('+', ' ');
 
     var fila="<tr><td hidden>"+id+"</td><td hidden>"+tipo+"</td><td>"+cadElemento+"</td><td>"+precio+"</td><td>"+1+"</td><td>"+
-    " <span class='btn btn-success btn-sm' ><span class='fas fa-plus-circle'   onclick='agregarItem("+id+"),agregarItem2("+tipoO+")'></span></span><span class='btn btn-danger btn-sm'><span class='fas fa-minus-circle' onclick='restarItem()'></span></span>"
-    +"</td><td>"+65+"</td></tr>";
+    " <span class='btn btn-success btn-sm' ><span class='fas fa-plus-circle'   onclick='agregarItem("+id+"),agregarItem2("+tipoO+")'></span></span><span class='btn btn-danger btn-sm'><span class='fas fa-minus-circle' onclick='restarItem("+id+"),restarItem2("+tipoO+")'></span></span>"
+    +"</td><td>"+precio+"</td></tr>";
 
   
 
@@ -638,9 +640,22 @@ if(document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getEleme
 && document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getElementsByTagName("td")[0].textContent==ValorId){
 
     valCant=document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getElementsByTagName("td")[4].textContent;
+    precio=document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getElementsByTagName("td")[3].textContent;
 
+   
+
+// cantidades
  total=parseInt(valCant)+1;
  document.getElementById("tablaApedir").rows[i].cells[4].innerHTML = total ;
+
+
+
+ //precio
+ precioU=parseFloat(precio);
+ document.getElementById("tablaApedir").rows[i].cells[6].innerHTML = total * precioU;
+
+
+
 
 
 // aca lo de arriba funciona bien tenes q seguir desde aca pasar los datos y cargar la comanda
@@ -668,10 +683,101 @@ if(document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getEleme
 <script>
 
 
-function restarItem(){
 
-    console.log("yeahPra");
+
+// para estar
+function restarItem(tipoo){
+
+  
+
+
+    valorIdRestar=tipoo;
+
+
 }
 
 
+
+
+
+
+function restarItem2(tipoo){
+
+
+
+
+switch(tipoo){
+
+case 1:
+    valorTipoRestar='bebida';
+    break;
+
+case 2:
+    valorTipoRestar='plato';
+    break;
+case 3:
+    valorTipoRestar='postre';
+    break;
+
+
+}
+
+
+
+
+restarValorATabla();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+function restarValorATabla(){
+    
+    
+    
+    for(i=1; i<$('#tablaApedir tr').length;i++){
+    
+    if(document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getElementsByTagName("td")[1].textContent==valorTipoRestar
+    && document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getElementsByTagName("td")[0].textContent==valorIdRestar ){
+    
+        valCant=document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getElementsByTagName("td")[4].textContent;
+        precio=document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getElementsByTagName("td")[3].textContent;
+
+
+     total=parseInt(valCant)-1;
+      //precio
+ precioU=parseFloat(precio);
+
+     if(total>0){
+     document.getElementById("tablaApedir").rows[i].cells[4].innerHTML = total ;
+     document.getElementById("tablaApedir").rows[i].cells[6].innerHTML = total * precioU;
+     }
+     else{
+        document.getElementById("tablaApedir").rows[i].cells[4].innerHTML = 0 ; 
+        document.getElementById("tablaApedir").rows[i].cells[6].innerHTML = 0 * precioU;
+     }
+    
+
+     
+
+
+    
+    
+    
+        
+    }
+    
+    }
+    
+    
+    
+    }
 </script>
