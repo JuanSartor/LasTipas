@@ -297,7 +297,7 @@
 <div class="col-10"></div>
 
 <button type="button"  class="btn btn-primary mb-1" disabled   id="btnPedirComanda" 
- style="width: 150px; height: 38px; border-radius: 5px;"> Pedir</button>
+ style="width: 150px; height: 38px; border-radius: 5px;"  onclick="cargarComanda()"> Pedir</button>
 
  </div>
                         
@@ -780,4 +780,51 @@ function restarValorATabla(){
     
     
     }
+</script>
+
+
+
+<script>
+function cargarComanda(){
+
+  
+
+    arregloComanda = new Array($('#tablaApedir tr').length);
+    cadena='';
+
+    /* 
+    concateno con --   de la siguiente manera:
+    id--tipo--cantidad--precio  
+    */
+    for(i=1; i<$('#tablaApedir tr').length;i++){
+
+
+
+        cadena= document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getElementsByTagName("td")[0].textContent+"--"+
+        document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getElementsByTagName("td")[1].textContent+"--"+
+        document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getElementsByTagName("td")[4].textContent+"--"+
+        document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getElementsByTagName("td")[3].textContent;
+
+
+        arregloComanda.push(cadena);
+
+
+        // console.log(cadena);
+        cadena='';
+        
+
+    }
+
+  // este arrelgo posee todos los datos que debo pasar para registrar la comanda
+     arregloComandaFinal = arregloComanda.filter(function (el) {
+  return el != null;
+});
+
+
+
+
+
+}
+
+
 </script>
