@@ -881,7 +881,7 @@ function  iraPedir(){
                  if(datos['bandera']=='0'){
 
 
-                    window.location.href="pedir.php";
+                    window.location.href="pedir.php?parametro="+arreglo;
 
 
 

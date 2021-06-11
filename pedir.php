@@ -16,7 +16,18 @@
       else  
       {  
            header('location:inicio.php');  
-      }  
+      } 
+      
+      
+
+
+
+      $mesas[]=$_GET["parametro"];
+
+     $_SESSION["mesasOcupadas"] =implode(",", $mesas);
+
+
+
       ?>
 
 
@@ -819,6 +830,35 @@ function cargarComanda(){
      arregloComandaFinal = arregloComanda.filter(function (el) {
   return el != null;
 });
+
+
+
+
+
+
+
+
+
+$.ajax({
+        type:"POST",
+         data:"listaElementos="+arregloComandaFinal ,
+           url:"procesos/guardarComanda.php",
+           success:function(r){
+               
+                   
+            alertify.success("Su comanda ha sido cargada");
+                   
+
+           },
+           error:function(){
+
+               alertify.success("No se pudo cargar la comanda correctamente");
+               
+           }
+
+       });
+
+
 
 
 
