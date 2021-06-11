@@ -32,31 +32,34 @@ mysqli_query($conexion,$sqlNuevaComanda);
 //
 //saqdasdsadasdsasdaaAAaacaacacacaca
 
+
+// agregaste lo del select id y lo del for each, ninguna cosa probaste
+
 $sqlObtenerIDcomanda= "SELECT id FROM comandas order by id desc limit 1 ";
 
+$resultadoIDC = mysqli_query($conexion,$sqlObtenerIDcomanda);
+		$veridC= mysqli_fetch_array($resultadoIDC);
+
+
+
+$regAinsertar='';
+foreach($arrEl as &$renglon){
+
+	$arregloDatos= explode ( '--', $renglon);
+
+	$regAinsertar=$regAinsertar."('$arregloDatos[0]','$arregloDatos[1]','$_SESSION[idC]','$veridC')";
+
+}
 
 
 
 
-
-
-
-
-
-
-
-$cadena=$arrEl[0];
-
-$arregloDatos= explode ( '--', $cadena );
 
 
 
 // ojo aca el id q estas guardando no es el real, sino el del registro en si
-$sql= "INSERT INTO link_comanda_elementos(id_elemento,tipo_elemento,id_registro) 
-		VALUES ('$arregloDatos[0]','$arregloDatos[1]','$_SESSION[idC]')";
+$sql= "INSERT INTO link_comanda_elementos(id_elemento,tipo_elemento,id_registro,id_comanda) VALUES".$regAinsertar;
 
-
-		
 
 		return mysqli_query($conexion,$sql);
 
