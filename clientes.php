@@ -155,6 +155,10 @@
                                 <a class="nav-link" href="gestorPedidos.php"  aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-tasks"></i>Gestor Pedidos</a>
                                
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="comandas.php"  aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-clipboard-list"></i>Comandas</a>
+                               
+                            </li>
 
 
 
