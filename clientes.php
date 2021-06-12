@@ -51,7 +51,7 @@
     <link rel="stylesheet" href="assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
     <!--  <link rel="stylesheet" href="assets/vendor/charts/c3charts/c3.css"> -->
     <link rel="stylesheet" href="assets/vendor/fonts/flag-icon-css/flag-icon.min.css"> 
-    <title>Concesionaria</title>
+    <title>SyRest</title>
 
   
 
@@ -145,8 +145,14 @@
                                     
                                 </div>
                             </li>
+
+                          
                             <li class="nav-item">
                                 <a class="nav-link" href="mesas.php"  aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-tablets"></i>Mesas</a>
+                               
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="gestorPedidos.php"  aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-tasks"></i>Gestor Pedidos</a>
                                
                             </li>
 
