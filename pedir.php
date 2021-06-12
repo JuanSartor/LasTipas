@@ -63,7 +63,7 @@
     <link rel="stylesheet" href="assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
     <!--  <link rel="stylesheet" href="assets/vendor/charts/c3charts/c3.css"> -->
     <link rel="stylesheet" href="assets/vendor/fonts/flag-icon-css/flag-icon.min.css"> 
-    <title>Concesionaria</title>
+    <title>SyRest</title>
 
   
 
@@ -841,7 +841,7 @@ function cargarComanda(){
 
 $.ajax({
         type:"POST",
-         data:"listaElementos="+arregloComandaFinal ,
+         data: {'listaElementos': JSON.stringify(arregloComandaFinal)},
            url:"procesos/guardarComanda.php",
            success:function(r){
                

@@ -5,7 +5,7 @@ require_once "../clases/crud.php";
 
 
 
-$arrEl[]= $_POST["listaElementos"];
+$arrEl= json_decode($_POST['listaElementos']);  
 
 
 $conexion= conectar();
@@ -43,22 +43,22 @@ $resultadoIDC = mysqli_query($conexion,$sqlObtenerIDcomanda);
 
 
 $regAinsertar='';
-foreach($arrEl as &$renglon){
+ foreach($arrEl as &$renglon){
 
 	$arregloDatos= explode ( '--', $renglon);
 
-	$regAinsertar=$regAinsertar."('$arregloDatos[0]','$arregloDatos[1]','$_SESSION[idC]','$veridC')";
+	$regAinsertar=$regAinsertar."('$arregloDatos[0]','$arregloDatos[1]','$_SESSION[idC]','$veridC[0]'),";
 
-}
+ }
 
 
-
+ $inseFinal = substr($regAinsertar, 0, -1);
 
 
 
 
 // ojo aca el id q estas guardando no es el real, sino el del registro en si
-$sql= "INSERT INTO link_comanda_elementos(id_elemento,tipo_elemento,id_registro,id_comanda) VALUES".$regAinsertar;
+$sql= "INSERT INTO link_comanda_elementos(id_elemento,tipo_elemento,id_registro,id_comanda) VALUES".$inseFinal;
 
 
 		return mysqli_query($conexion,$sql);

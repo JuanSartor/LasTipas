@@ -11,19 +11,42 @@ $arrEl=explode("-", $_POST["banderaElemento"]);
 
 
 switch ($arrEl[1]) {
-    case 'b':
+    case 'b':{
+        if($arrEl[0]!=0){
         $sql="SELECT id,descripcion,precio from bebidas where eliminado='NO' and id_bebida='$arrEl[0]'";
+        }
+        else{
+            $sql="SELECT id,descripcion,precio from bebidas where eliminado='NO'";
+        }
+        
         $valorTipo= 'bebida';
       
-        break;
-    case 'c':
+        break;}
+    case 'c':{
+        if($arrEl[0]!=0){
         $sql="SELECT id,descripcion,precio from platos where eliminado='NO' and id_tipo_plato='$arrEl[0]'";
+        }
+        else{
+            $sql="SELECT id,descripcion,precio from platos where eliminado='NO' ";
+        }
+      
+      
+      
         $valorTipo= 'plato';
         break;
-    case 'd':
+    }
+    case 'd':{
+        if($arrEl[0]!=0){
         $sql="SELECT id,descripcion,precio from postres where eliminado='NO' and id_postre='$arrEl[0]'";
+        }
+        else{
+            $sql="SELECT id,descripcion,precio from postres where eliminado='NO'";
+        }
+       
+       
         $valorTipo= 'postre';
         break;
+}
 }
 
 
