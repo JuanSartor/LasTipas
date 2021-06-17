@@ -18,7 +18,7 @@ $fechaActual= getdate();
 
 $fechaDeHoy=$fechaActual['mday'].'-'.$fechaActual['mon'].'-'.$fechaActual['year'];
 
-
+// quede aca tenes q  ver como haces
 
 ?>
 
