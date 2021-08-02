@@ -40,14 +40,23 @@ $sqlObtenerIDcomanda= "SELECT id FROM comandas order by id desc limit 1 ";
 $resultadoIDC = mysqli_query($conexion,$sqlObtenerIDcomanda);
 		$veridC= mysqli_fetch_array($resultadoIDC);
 
-
+$tipoElementoo=0;
 
 $regAinsertar='';
  foreach($arrEl as &$renglon){
 
 	$arregloDatos= explode ( '--', $renglon);
 
-	$regAinsertar=$regAinsertar."('$arregloDatos[0]','$arregloDatos[1]','$_SESSION[idC]','$veridC[0]'),";
+
+	// esto hago para agregar solo el valor q tiene la referencia a la tabla tipos_de_tipos
+	if($arregloDatos[1]=='bebida'){
+		$tipoElementoo=1;}
+	elseif($arregloDatos[1]=='plato'){
+		$tipoElementoo=2;}
+	else{
+		$tipoElementoo = 3; }
+
+	$regAinsertar=$regAinsertar."('$arregloDatos[0]','$tipoElementoo','$_SESSION[idC]','$veridC[0]'),";
 
  }
 

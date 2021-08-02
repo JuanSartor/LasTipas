@@ -9,7 +9,8 @@ $conexion=conectar();
 
 // el estado 0(cero) indica que la comanda todavia no fue cancelada, ni preparada, es decir esta en espera
 
-$sql="SELECT id,mesas,estado FROM comandas where estado=0  and fecha_creacion > DATE_SUB(CURDATE(), INTERVAL 1 DAY)";
+$sql="SELECT c.id, c.mesas, c.estado, u.nombre, u.apellido  FROM comandas c, usuarios u
+where c.estado=0 and c.id_usuario_logueado='$_SESSION[idC]'  and u.id=c.id_usuario_logueado  ";
 
 $result = mysqli_query($conexion,$sql);
 
@@ -37,9 +38,6 @@ $fechaDeHoy=$fechaActual['mday'].'-'.$fechaActual['mon'].'-'.$fechaActual['year'
 				<td style="font-size: 12px" >Mesas</td>
 				<td style="font-size: 12px">Estado</td>
 			
-				
-				<td style="font-size: 12px">Detalles</td>
-				
 
 			</tr>
 
@@ -56,14 +54,14 @@ $fechaDeHoy=$fechaActual['mday'].'-'.$fechaActual['mon'].'-'.$fechaActual['year'
 					?>
 
 				<tr style="background-color: white;">
-					<td style="font-size: 12px"> <?php echo $_SESSION["usernameC"]?> </td>
+					<td style="font-size: 12px"> <?php echo $mostrar[3].' '.$mostrar[4]?> </td>
 					<td style="font-size: 12px"> <?php echo $mostrar[1]?> </td>
 				
 				     <td style="font-size: 12px"> <?php 
 				    	if($mostrar[2]=='0'){
 				    		echo "<div class=\"alert alert-success\" role=\"alert\" style=\"height:35px\">En Espera</div> "; 
 				    	}
-				    		else{echo "<div class=\"alert alert-danger\" role=\"alert\" style=\"height:35px\" >Terminada</div> "; }
+				    		else{echo "<div class=\"alert alert-danger\" role=\"alert\" style=\"height:35px\" >Cerrado</div> "; }
 
 
 				   ?> </td> 
@@ -75,6 +73,7 @@ $fechaDeHoy=$fechaActual['mday'].'-'.$fechaActual['mon'].'-'.$fechaActual['year'
 						</span>
 						</td>  
 						
+						//pasar desde aca arriba el id de la comanda para mostrar el detalle en un modal
 
 					
 					
