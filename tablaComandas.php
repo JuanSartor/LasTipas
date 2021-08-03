@@ -9,8 +9,15 @@ $conexion=conectar();
 
 // el estado 0(cero) indica que la comanda todavia no fue cancelada, ni preparada, es decir esta en espera
 
-$sql="SELECT c.id, c.mesas, c.estado, u.nombre, u.apellido  FROM comandas c, usuarios u
+$sql="SELECT c.id, c.mesas, c.estado, u.nombre, u.apellido  FROM comandas c, usuarios u, mesas m
 where c.estado=0 and c.id_usuario_logueado='$_SESSION[idC]'  and u.id=c.id_usuario_logueado  ";
+
+
+
+// quedaste aca arriba tenes q corregir xq se ve el id de las mesas y tiene  q mostrarse el NUMERO de mesa
+// despues de esto hacer pruebas completa de la logica
+
+
 
 $result = mysqli_query($conexion,$sql);
 
@@ -19,7 +26,7 @@ $fechaActual= getdate();
 
 $fechaDeHoy=$fechaActual['mday'].'-'.$fechaActual['mon'].'-'.$fechaActual['year'];
 
-// quede aca tenes q  ver como haces
+
 
 ?>
 

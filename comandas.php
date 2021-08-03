@@ -411,7 +411,7 @@
 
 function mostrarComanda(id){
    
-    $('#tablaDatatableComanda').load('tablaDetalleComandas.php', {IdComanda: id});
+    $('#tablaDatatableComanda').load('tablaDetalleComandas.php?IdComanda='+id);
 
     
     
