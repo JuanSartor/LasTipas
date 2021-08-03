@@ -37,7 +37,7 @@ $fechaDeHoy=$fechaActual['mday'].'-'.$fechaActual['mon'].'-'.$fechaActual['year'
 				<td style="font-size: 12px" >Moso</td>
 				<td style="font-size: 12px" >Mesas</td>
 				<td style="font-size: 12px">Estado</td>
-			
+				<td style="font-size: 12px"></td>
 
 			</tr>
 
@@ -68,12 +68,12 @@ $fechaDeHoy=$fechaActual['mday'].'-'.$fechaActual['mon'].'-'.$fechaActual['year'
 					 
 					
 						<td> 
-						<span class="btn btn-warning btn-sm" data-toggle="modal" title="Detalles"  data-target="#modalEditar" onclick="actualizarUsuario('<?php echo $mostrar[6] ?>')">
+						<span class="btn btn-warning btn-sm" data-toggle="modal" title="Detalles"  data-target="#modalComanda" onclick="mostrarComanda('<?php echo $mostrar[0] ?>')">
 					Detalles
 						</span>
 						</td>  
 						
-						//pasar desde aca arriba el id de la comanda para mostrar el detalle en un modal
+						
 
 					
 					

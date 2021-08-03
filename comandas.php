@@ -312,6 +312,58 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal editar -->
+<div class="modal fade" id="modalComanda" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Actualizar Usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="frmactualizar"   action="" method="post">
+    
+<label>Comanda</label>
+
+<div id="tablaDatatableComanda"></div>
+
+
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        
+      </div>
+
+</form>
+
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
 </body>
  
 </html>
@@ -353,5 +405,13 @@
         $('#tablaDatatable').load('tablaComandas.php');
     });
 
+
+</script>
+<script >
+
+function mostrarComanda(id){
+    $('#tablaDatatableComanda').load('tablaComandas.php');
+    
+}
 
 </script>
