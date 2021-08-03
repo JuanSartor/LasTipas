@@ -328,7 +328,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Actualizar Usuario</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Comanda</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -336,7 +336,7 @@
       <div class="modal-body">
         <form id="frmactualizar"   action="" method="post">
     
-<label>Comanda</label>
+
 
 <div id="tablaDatatableComanda"></div>
 
@@ -410,8 +410,12 @@
 <script >
 
 function mostrarComanda(id){
-    $('#tablaDatatableComanda').load('tablaComandas.php');
+   
+    $('#tablaDatatableComanda').load('tablaDetalleComandas.php', {IdComanda: id});
+
+    
     
 }
+
 
 </script>
