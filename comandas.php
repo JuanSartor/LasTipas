@@ -26,7 +26,7 @@
 
      $_SESSION["mesasOcupadas"] =implode(",", $mesas);
 
-dsadsasda
+
 
       ?>
 

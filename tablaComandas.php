@@ -16,19 +16,53 @@ where c.estado=0 and c.id_usuario_logueado='$_SESSION[idC]'  and u.id=c.id_usuar
 $result = mysqli_query($conexion,$sql);
 
 
+$matriz=Array($result->num_rows);
+foreach($matriz as &$eleM){
+
+	$eleM=Array(5);
+}
+
+
+
+
+
 $arregloPrevioAString=  Array();
 $i=0;
 
+// array para meter la cantidad de mesas q hay en cada registro
 $arregloCantidaEleEnPos1= Array();
 $pos=0;
 
+$subArreglo= Array();
+
+$contadoMatriz=0;
+
+// obtengo los el restuldao de la consulta de arriba
 while ($mostrar=mysqli_fetch_array($result)) {
 
+
+
+
+$matriz[$contadoMatriz][0]=$mostrar[0];
+$matriz[$contadoMatriz][1]=$mostrar[1];
+$matriz[$contadoMatriz][2]=$mostrar[2];
+$matriz[$contadoMatriz][3]=$mostrar[3];
+$matriz[$contadoMatriz][4]=$mostrar[4];
+
+$contadoMatriz++;
+
+
+
+
+
+
+	// creo array para los numeros de las mesas
 	$arregloCantidaEleEnPos1[$pos]=sizeof(explode(",",$mostrar[1]));
 
+	// aca entro si hay mas de una mesa
 	if( $arregloCantidaEleEnPos1[$pos] > 1){
 
- $subArreglo=explode(",", $mostrar[1]); 
+ 	$subArreglo=explode(",", $mostrar[1]); 
  		foreach($subArreglo as &$valor){
 
 			$arregloPrevioAString[$i]=$valor;
@@ -36,6 +70,7 @@ while ($mostrar=mysqli_fetch_array($result)) {
 
 
 		}
+		
 
 
 }
@@ -43,13 +78,22 @@ while ($mostrar=mysqli_fetch_array($result)) {
 
 		$arregloPrevioAString[$i]=$mostrar[1];
 		$i++;
-
+		
 	}
 	$pos++;
+	$subArreglo=null;
 
 
 }
-// print_r($arregloPrevioAString);
+ //print_r($arregloPrevioAString);
+//print_r($arregloCantidaEleEnPos1);
+ 
+
+
+
+
+
+
 
 
 
@@ -72,66 +116,70 @@ $consulta = "SELECT id,numero FROM mesas WHERE id in (".$ids.")";
 
 $resultadiIds = mysqli_query($conexion,$consulta);
 
+// este array tiene los numeros de mesas en orden
+$arrayNumeroMesas= Array();
 
-$contad=0;
-$arrayIds=Array();
-$contUl=0;
-$cad='';
 while ($mostrarids=mysqli_fetch_array($resultadiIds)) {
 
-	if($arregloCantidaEleEnPos1[$contad]>1){
-		
+	foreach($arregloPrevioAString as &$elemento){
 
-		for($n=0; $n<$arregloCantidaEleEnPos1[$contad]; $n++){
-			
-			foreach($mostrarids as &$idC){
-				print_r($idC[0]);
-				if($idC[0] == $arregloPrevioAString[$contUl] ){
-					
-					
-					$cad=$cad.$idC[1].',';
-					
-				}
-	
-			}
+		// si el id es igual al  al id q traigo, agrego el numero de mesa a el arreglo de numeros
+		if($mostrarids[0]== $elemento){
 
-			$contUl++;
+			array_push($arrayNumeroMesas,$mostrarids[1] );
 
 		}
 
-		$cadenaFinal=substr($cad, 0, -1);
-		$arrayIds[$contad]=$cadenaFinal;
-
-		$contad++;
-
-		$cad='';
-
-
-	}
-	else{
-
-		foreach($mostrarids as &$idC){
-			if($idC[0] == $arregloPrevioAString[$contUl] ){
-				$arrayIds[$contad]=$idC[1];
-				
-			}
-
-		}
-		$contUl++;
-
-		$contad++;
 
 	}
 
 
-
-	
 
  
 }
 
+//print_r($arrayNumeroMesas);
 
 
+
+$cadaInsert='';
+$subcad='';
+
+
+$incremento=0;
+$incrementoMatriz=0;
+ foreach($arregloCantidaEleEnPos1 as &$cant){
+
+	if($cant>1){
+ 	for($j=0; $j<$cant; $j++){
+
+
+		$subcad=$subcad.$arrayNumeroMesas[$incremento].',';
+		$incremento++;
+
+	}
+
+
+	$cadaInsert=substr($subcad, 0, -1);
+	$subcad='';
+}
+else{
+
+	$cadaInsert=$arrayNumeroMesas[$incremento];
+	$incremento++;
+
+
+}
+
+$matriz[$incrementoMatriz][1]=$cadaInsert;
+
+$incrementoMatriz++;
+$cadaInsert='';
+
+ }
+
+
+//  print_r($matriz);
 
 
 
@@ -168,18 +216,19 @@ $fechaDeHoy=$fechaActual['mday'].'-'.$fechaActual['mon'].'-'.$fechaActual['year'
 		
 			<tbody>
 				<?php
-				while ($mostrar=mysqli_fetch_array($result)) {
+				
+					foreach($matriz as &$eleMatriz){
 			
 		
 
 					?>
 
 				<tr style="background-color: white;">
-					<td style="font-size: 12px"> <?php echo $mostrar[3].' '.$mostrar[4]?> </td>
-					<td style="font-size: 12px"> <?php echo $mostrar[1]?> </td>
+					<td style="font-size: 12px"> <?php echo $eleMatriz[3].' '.$eleMatriz[4]?> </td>
+					<td style="font-size: 12px"> <?php echo $eleMatriz[1]?> </td>
 				
 				     <td style="font-size: 12px"> <?php 
-				    	if($mostrar[2]=='0'){
+				    	if($eleMatriz[2]=='0'){
 				    		echo "<div class=\"alert alert-success\" role=\"alert\" style=\"height:35px\">En Espera</div> "; 
 				    	}
 				    		else{echo "<div class=\"alert alert-danger\" role=\"alert\" style=\"height:35px\" >Cerrado</div> "; }
@@ -189,7 +238,7 @@ $fechaDeHoy=$fechaActual['mday'].'-'.$fechaActual['mon'].'-'.$fechaActual['year'
 					 
 					
 						<td> 
-						<span class="btn btn-warning btn-sm" data-toggle="modal" title="Detalles"  data-target="#modalComanda" onclick="mostrarComanda('<?php echo $mostrar[0] ?>')">
+						<span class="btn btn-warning btn-sm" data-toggle="modal" title="Detalles"  data-target="#modalComanda" onclick="mostrarComanda('<?php echo $eleMatriz[0] ?>')">
 					Detalles
 						</span>
 						</td>  
