@@ -864,6 +864,12 @@ $.ajax({
 
 
 
+       location.href ="comandas.php";
+
+
+
+
+
 }
 
 

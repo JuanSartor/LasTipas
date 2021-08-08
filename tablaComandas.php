@@ -119,6 +119,7 @@ $resultadiIds = mysqli_query($conexion,$consulta);
 // este array tiene los numeros de mesas en orden
 $arrayNumeroMesas= Array();
 
+if($resultadiIds!=null){
 while ($mostrarids=mysqli_fetch_array($resultadiIds)) {
 
 	foreach($arregloPrevioAString as &$elemento){
@@ -137,6 +138,7 @@ while ($mostrarids=mysqli_fetch_array($resultadiIds)) {
 
  
 }
+
 
 //print_r($arrayNumeroMesas);
 
@@ -257,6 +259,7 @@ $fechaDeHoy=$fechaActual['mday'].'-'.$fechaActual['mon'].'-'.$fechaActual['year'
 
 
 <?php
+}
 }
 ?>
 			</tbody>
