@@ -79,7 +79,7 @@
         <!-- ============================================================== -->
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-            <a class="navbar-brand" href="index.php">  <img src="static/img/gaba.jpeg" height="48" width="48"></a>
+            <a class="navbar-brand" href="index.php">  <img src="static/img/logo.jpg" height="48" width="48"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -524,7 +524,9 @@ var valorIdRestar=0;
 function agregarElementoAPedido(tipo,id,elemento,precio,idBTN){
       
    
-    document.getElementById(idBTN).disabled=true;
+
+    // si descomento esta linea lo q hago es poner desabilitado para q solo puedan sumar cantidades y no q aparezca varias veces lo mismo
+    // document.getElementById(idBTN).disabled=true;
    
     switch(tipo){
 
@@ -545,9 +547,9 @@ function agregarElementoAPedido(tipo,id,elemento,precio,idBTN){
 
     
 
-    if(document.getElementById("tablaApedir")==null){
-        console.log("estoy vaciita");
-    }
+    // if(document.getElementById("tablaApedir")==null){
+    //     console.log("estoy vaciita");
+    // }
 
 
     cadElemento=elemento.replace('+', ' ');
