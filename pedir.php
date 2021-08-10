@@ -289,7 +289,8 @@
       <th scope="col">Cantidad</th>
       <th scope="col">Agregar/Quitar</th>
       <th scope="col">Total</th>
-      
+      <th scope="col">Observacion</th>
+      <th scope="col" hidden>infoObs</th>
     </tr>
   </thead>
   <tbody>
@@ -513,6 +514,8 @@ function cargarRadioBebidas(){
 
 <script>
 
+    var observacion='';
+
 var ValorTipo=0;
 var ValorId=0;
 
@@ -556,7 +559,9 @@ function agregarElementoAPedido(tipo,id,elemento,precio,idBTN){
 
     var fila="<tr><td hidden>"+id+"</td><td hidden>"+tipo+"</td><td>"+cadElemento+"</td><td>"+precio+"</td><td>"+1+"</td><td>"+
     " <span class='btn btn-success btn-sm' ><span class='fas fa-plus-circle'   onclick='agregarItem("+id+"),agregarItem2("+tipoO+")'></span></span><span class='btn btn-danger btn-sm'><span class='fas fa-minus-circle' onclick='restarItem("+id+"),restarItem2("+tipoO+")'></span></span>"
-    +"</td><td>"+precio+"</td></tr>";
+    +"</td><td>"+precio+"</td><td>"+"<span class='btn btn-warning btn-sm' ><span class='fas fa-plus-square'   onclick='agregarObservacion()'></span></span>"+"</td><td>"+''+"</td></tr>";
+
+    
 
   
 
@@ -588,6 +593,20 @@ if(document.getElementById("tablaApedir")!=null){
 
 
    }
+
+
+
+   
+
+
+
+ 
+
+
+
+
+
+
 
 
 // con este metodo seteo el id de la base de datos del producto, hice 2 metodos xq no me debaja pasar mas de un parametro
@@ -698,7 +717,7 @@ if(document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getEleme
 
 
 
-// para estar
+// para restar
 function restarItem(tipoo){
 
   
@@ -794,6 +813,67 @@ function restarValorATabla(){
     
     }
 </script>
+
+
+
+
+
+
+
+<script>
+
+
+
+
+
+
+
+
+// con esto agregas los botones y eso pera vas a tener q ver como sabes a cual le seteas el campo
+// podes intentar como haces para sumar y restar
+function agregarObservacion(){
+
+alertify.prompt("Observacion","Ingrese la observacion","",
+function(evt, value ){
+
+
+observacion=value;
+
+
+},
+function(){
+  observacion='';
+
+}).set('labels', {ok:'Guardar', cancel:'Cancelar'});
+
+
+}
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
