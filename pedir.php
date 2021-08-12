@@ -522,6 +522,9 @@ var ValorId=0;
 var valorTipoRestar=0;
 var valorIdRestar=0;
 
+var valorTipoObservacion=0;
+var valorTipoObservacion2=0;
+
 
 
 function agregarElementoAPedido(tipo,id,elemento,precio,idBTN){
@@ -559,7 +562,7 @@ function agregarElementoAPedido(tipo,id,elemento,precio,idBTN){
 
     var fila="<tr><td hidden>"+id+"</td><td hidden>"+tipo+"</td><td>"+cadElemento+"</td><td>"+precio+"</td><td>"+1+"</td><td>"+
     " <span class='btn btn-success btn-sm' ><span class='fas fa-plus-circle'   onclick='agregarItem("+id+"),agregarItem2("+tipoO+")'></span></span><span class='btn btn-danger btn-sm'><span class='fas fa-minus-circle' onclick='restarItem("+id+"),restarItem2("+tipoO+")'></span></span>"
-    +"</td><td>"+precio+"</td><td>"+"<span class='btn btn-warning btn-sm' ><span class='fas fa-plus-square'   onclick='agregarObservacion()'></span></span>"+"</td><td>"+''+"</td></tr>";
+    +"</td><td>"+precio+"</td><td>"+"<span class='btn btn-warning btn-sm' ><span class='fas fa-plus-square'   onclick='agregarObservacion("+id+"),agregarObservacion2("+tipoO+")'></span></span>"+"</td><td>"+''+"</td></tr>";
 
     
 
@@ -584,11 +587,7 @@ if(document.getElementById("tablaApedir")!=null){
 }
 
 
-// aca tenes q seguir e ir guardando las comandas, ojo tenes q guardar el id y ver a q tabla pertenece
-// si es bebida comida o postre
-// y tenes que guardar en comandas la comandas
-// en link coman elementos para la referencia de cada elemento a 1 comandas
-// y en pedido comanda a un 1 varias comandas
+
 
 
 
@@ -824,20 +823,77 @@ function restarValorATabla(){
 
 
 
+// para restar
+function agregarObservacion(tipoo){
+
+  
 
 
+valorTipoObservacion=tipoo;
+
+
+}
+
+
+
+
+
+
+function agregarObservacion2(tipoo){
+
+
+
+
+switch(tipoo){
+
+case 1:
+valorTipoObservacion2='bebida';
+break;
+
+case 2:
+valorTipoObservacion2='plato';
+break;
+case 3:
+valorTipoObservacion2='postre';
+break;
+
+
+}
+
+
+
+
+agregarObservacionFinal();
+}
 
 
 
 // con esto agregas los botones y eso pera vas a tener q ver como sabes a cual le seteas el campo
 // podes intentar como haces para sumar y restar
-function agregarObservacion(){
+function agregarObservacionFinal(){
 
 alertify.prompt("Observacion","Ingrese la observacion","",
 function(evt, value ){
 
 
-observacion=value;
+
+    for(i=1; i<$('#tablaApedir tr').length;i++){
+    
+    if(document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getElementsByTagName("td")[1].textContent==valorTipoObservacion2
+    && document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getElementsByTagName("td")[0].textContent==valorTipoObservacion ){
+    
+        document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getElementsByTagName("td")[8].textContent=value;
+        // observacion=value;
+        
+    }
+}
+// console.log(observacion);
+
+
+
+
+
+
 
 
 },
@@ -896,13 +952,14 @@ function cargarComanda(){
         cadena= document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getElementsByTagName("td")[0].textContent+"--"+
         document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getElementsByTagName("td")[1].textContent+"--"+
         document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getElementsByTagName("td")[4].textContent+"--"+
-        document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getElementsByTagName("td")[3].textContent;
+        document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getElementsByTagName("td")[3].textContent+"--"+
+        document.getElementById("tablaApedir").getElementsByTagName("tr")[i].getElementsByTagName("td")[8].textContent;
 
 
         arregloComanda.push(cadena);
 
 
-        // console.log(cadena);
+        
         cadena='';
         
 

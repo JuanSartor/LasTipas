@@ -56,7 +56,7 @@ $regAinsertar='';
 	else{
 		$tipoElementoo = 3; }
 
-	$regAinsertar=$regAinsertar."('$arregloDatos[0]','$tipoElementoo','$_SESSION[idC]','$veridC[0]','$arregloDatos[2]'),";
+	$regAinsertar=$regAinsertar."('$arregloDatos[0]','$tipoElementoo','$_SESSION[idC]','$veridC[0]','$arregloDatos[2]','$arregloDatos[4]'),";
 
  }
 
@@ -67,7 +67,7 @@ $regAinsertar='';
 
 
 // ojo aca el id q estas guardando no es el real, sino el del registro en si
-$sql= "INSERT INTO link_comanda_elementos(id_elemento,tipo_elemento,id_registro,id_comanda,cantidad_elementos) VALUES".$inseFinal;
+$sql= "INSERT INTO link_comanda_elementos(id_elemento,tipo_elemento,id_registro,id_comanda,cantidad_elementos,observacion) VALUES".$inseFinal;
 
 
 		return mysqli_query($conexion,$sql);
