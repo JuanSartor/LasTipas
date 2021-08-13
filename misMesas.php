@@ -2,7 +2,8 @@
       session_start();  
       if(isset($_SESSION["usernameC"]))  
       {  
-           if((time() - $_SESSION['last_login_timestamp']) > 36000 or $_SESSION["permisos"]=='4') // 900 = 15 * 60   el 60 son segundos
+           if((time() - $_SESSION['last_login_timestamp']) > 36000 or $_SESSION["permisos"]=='2' or $_SESSION["permisos"]=='3' or $_SESSION["permisos"]=='4')
+            // 900 = 15 * 60   el 60 son segundos
            {  
                 header("location:logout.php");  
            }  
@@ -24,9 +25,10 @@
 <head>
 
     <?php require_once "scripts.php";
-    include ("clases/conexion.php");
+      include ("clases/conexion.php");
 
-    $conexionLogueado= conectar();
+
+        $conexionLogueado= conectar();
     mysqli_set_charset($conexionLogueado,'utf8'); 
     $sqllog= "SELECT * from usuarios where id='$_SESSION[idC]'";
 
@@ -36,7 +38,7 @@
 
     $mostrarloguin=mysqli_fetch_array($resultadologuin);
 
-    ?>
+        ?>
     <!-- Required meta tags -->
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport" >
@@ -52,10 +54,12 @@
     <link rel="stylesheet" href="assets/vendor/fonts/flag-icon-css/flag-icon.min.css"> 
     <title>SyRest</title>
 
+  
+
 </head>
 
 <body>
-   <!-- ============================================================== -->
+    <!-- ============================================================== -->
     <!-- main wrapper -->
     <!-- ============================================================== -->
     <div class="dashboard-main-wrapper">
@@ -64,11 +68,11 @@
         <!-- ============================================================== -->
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-            <a class="navbar-brand" id="linkIndex" name="linkIndex" href="index.php">  <img src="static/img/logo.jpg" height="48" width="48"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="index.php">  <img src="static/img/logo.jpg" height="48" width="48"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
+              <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-right-top">
                        
                         <li class="nav-item dropdown nav-user">
@@ -118,18 +122,18 @@
 
                             <li class="nav-item" id="linkAutomoviles" name="linkAutomoviles">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-88" aria-controls="submenu-6"> <i class="fab fa-product-hunt"></i>Productos </a>
-                                <div id="submenu-88" class="collapse submenu show ">
+                                <div id="submenu-88" class="collapse submenu ">
                                     <ul class="nav flex-column">
                                           <li class="nav-item ">
                                   <a class="nav-link" href="bebidas.php"   aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fas fa-glass-cheers"></i>Bebidas</a>
                                 
                             </li>
                             <li class="nav-item ">
-                                  <a class="nav-link active" href="#"   aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fas fa-utensils"></i>Platos</a>
+                                  <a class="nav-link" href="platos.php"   aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fas fa-utensils"></i>Platos</a>
                                 
                             </li>
                             <li class="nav-item ">
-                                  <a class="nav-link " href="postres.php"   aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fas fa-ice-cream"></i>Postres</a>
+                                  <a class="nav-link" href="postres.php"   aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fas fa-ice-cream"></i>Postres</a>
                                 
                             </li>
                            
@@ -142,8 +146,8 @@
                                     
                                 </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="mesas.php"  aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-tablets"></i>Mesas</a>
+                            <li class="nav-item"> 
+                                <a class="nav-link" href="mesas.php"   aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-tablets"></i>Mesas</a>
                                
                             </li>
                             <li class="nav-item">
@@ -155,10 +159,10 @@
                                
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="misMesas.php"  aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-diagnoses"></i>Mis Mesas</a>
+                                <a class="nav-link" href="#"  style="background-color: lightsteelblue;" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-diagnoses"></i>Mis Mesas</a>
                                
                             </li>
-
+                            
 
 
 
@@ -177,14 +181,14 @@
                             
                              <li class="nav-item">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-8"><i class="fas fa-fw fa-columns"></i>Otros</a>
-                                <div id="submenu-8" class="collapse submenu " >
+                                <div id="submenu-8" class="collapse submenu" >
                                     <ul class="nav flex-column">
                                        
                                         <li class="nav-item">
                                             <a class="nav-link" href="tipoBebida.php">Tipo de Bebidas</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link " href="tipoPlato">Tipo de Platos</a>
+                                            <a class="nav-link" href="tipoPlato.php">Tipo de Platos</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="tipoPostre.php">Tipo de Postres</a>
@@ -207,7 +211,14 @@
         <!-- ============================================================== -->
         <div class="dashboard-wrapper">
             
+                    
+                  
+
+
+                    
+
                     <!-- parte principal de la pagina -->
+
 
 <div class="container">
 
@@ -215,25 +226,76 @@
             <div class="col-sm-12">
      
                 <div class="card text-center">
-                    <div class="card-header">
-                         PLATOS
+                <div class="card-header">
+                          MIS MESAS
 
-                         <div style="width: 20px" >
-                <button type="button"  class="btn btn-primary mb-1" id="btnNuevoProductor" data-toggle="modal" data-target ="#agregarnuevosdatosmodal"  style="width: 50px"> <span class="fas fa-plus-circle"></span> </button>
-            </div>                          
+                        <br>
+                        <br>
+
+
+                    
+                         <?php 
+
+$conexionMesasDisponibles= conectar();
+mysqli_set_charset($conexionMesasDisponibles,'utf8'); 
+$sqlMesasDispon= "SELECT id,numero from mesas where eliminado='NO' and estado='0'";
+
+$resultadoMesasDis=mysqli_query($conexionMesasDisponibles,$sqlMesasDispon);
+
+mysqli_close($conexionMesasDisponibles);
+
+     ?>
+
+
+
+                  
+
+
+
+
+
+
+
+            <div id="contenedorMesas"></div>
                     </div>
-                    <div class="card-body">  
-                        <div id="tablaDatatable"></div>
-                    </div>                   
+
+                    <div class="card-body">
+                        
+                        
+
+
+
+
+                        
+                        <!-- <div id="tablaDatatable"></div> -->
+
+                    </div>
+                    
                 </div>
+
+
             </div>
+
         </div>
+
+
     </div>
- 
+
+
+
+
+
+
+
+
+
+                    
+                    
+            
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-          <!--    <div class="footer">
+       <!--       <div class="footer">
                 <div class="container-fluid">
                     <div class="row">
                        
@@ -281,77 +343,66 @@
     <!-- <script src="assets/libs/js/dashboard-ecommerce.js"></script> -->
 
 
+
+
+
+
 <!-- Modal agregar -->
 <div class="modal fade" id="agregarnuevosdatosmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nuevo Plato</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Nuevo Usuario</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
       
-    <form id="frmnuevo" onsubmit="nuevoPlato()"  action="" method="post">
-
-
-        <?php 
-
-    $conexionT= conectar();
-    mysqli_set_charset($conexionT,'utf8'); 
-    $sqlTipoBeb= "SELECT id,descripcion from tipo_platos where eliminado='NO' order by LENGTH(descripcion) desc";
-
-    $resultadoTipoB=mysqli_query($conexionT,$sqlTipoBeb);
-
-    mysqli_close($conexionT);
-    
-         ?>
-
-
- <br>
-  
-    <div class="row">
-        <div class="col-sm-3" >
-    <label >Tipo Plato <label style="color: red;">*</label></label>
-</div>
-  <div class="col-sm-6" >
-    <select  id="idTipoBebida"   name="idTipoBebida" class="mi-selectorTipoBe"   required="true">
-                <?php
-
-                while ($valoresA = mysqli_fetch_array($resultadoTipoB)) {
-                    ?>
-                    <option  value="<?php print($valoresA['id']);?>"> <?php  print($valoresA['descripcion']);?> </option>
-
-                    <?php
-                }
-                ?>
-            </select>
-        
-        </div>
-    </div>
-        <br>
-
-    <label>Tamaño<label style="color: red;">*</label></label>
-    <input type="text" class="form-control input-sm" id="tamanioBebida" name="tamanioBebida" required maxlength="39" minlength="1" pattern="[0-9]+(\.[0-9]{1,2})?%?">
-    <label>Precio<label style="color: red;">*</label></label>
-    <input type="text" class="form-control input-sm" id="precioBebida" name="precioBebida" required maxlength="39" minlength="1" pattern="[0-9]+(\.[0-9]{1,2})?%?">
-    <label>Cantidad Disponible<label style="color: red;">*</label></label>
-    <input type="text" class="form-control input-sm" id="cantDisponible" name="cantDisponible" required maxlength="39" minlength="1" pattern="[0-9]+(\.[0-9]{1,2})?%?">
-            
-    <label>Descripcion <label style="color: red;">*</label></label>
-    <input type="text" class="form-control input-sm" id="descripcionBebida" name="descripcionBebida" required minlength="4">
-
+<form id="frmnuevo" onsubmit="nuevoUsuario()"  action="" method="post">
+    <label>Usuario <label style="color: red;">*</label></label>
+    <input type="text" class="form-control input-sm" id="usuario" name="usuario" required minlength="4" maxlength="19">
+    <label>Contraseña <label style="color: red;">*</label></label>
+    <input type="text" class="form-control input-sm" id="pw" name="pw" required minlength="4" maxlength="15">
+    <label>Nombre <label style="color: red;">*</label></label>
+    <input style="text-transform: capitalize;" type="text"  class="form-control input-sm" id="nombre" name="nombre" required minlength="4" maxlength="59" pattern="^[a-zA-Z\s]+">
+    <label>Apellido <label style="color: red;">*</label></label>
+    <input style="text-transform: capitalize;" type="text" class="form-control input-sm" id="apellido" name="apellido" required minlength="4" maxlength="39" pattern="^[a-zA-Z\s]+">
+    <label>Email <label style="color: red;">*</label></label>
+    <input type="email" class="form-control input-sm" id="correo" name="correo" required maxlength="59" minlength="4">
+     <label>DNI</label>
+    <input type="text" class="form-control input-sm" id="dni" name="dni"  maxlength="24" minlength="4" pattern="[0-9]+">
+     <label>Telefono</label>
+    <input type="text" class="form-control input-sm" id="telefono" name="telefono"  maxlength="29" minlength="4" pattern="[0-9]+">
     <br>
+    
+         <p>Seleccione el permiso para su usuario:</p>
 
+         <div class="row">
+            <div class="col-sm">
+                <input type="radio" name="permisos"   value="Admin">Administrador</div>
+                <div class="col-sm"> <input type="radio" name="permisos" checked  value="Gestor">Gestor</div>
+            </div>
+                 <div class="row">
+            <div class="col-sm">
+                <input type="radio" name="permisos"  value="Vendedor">Vendedor</div>
+                <div class="col-sm"> 
+                    <input type="radio" name="permisos"  value="Telemarketer">Telemarketer</div> 
+            </div>
+
+
+
+ 
   <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         <button type="submit" id="btnAgregarNuevo" class="btn btn-primary" >Crear Nuevo</button>
       </div>
 
 </form>
+ 
 
-      </div>      
+      </div>
+      
     </div>
   </div>
 </div>
@@ -359,128 +410,64 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-<!-- Modal actualizar bebida -->
-<div class="modal fade" id="modalEditarBebida" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal editar -->
+<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Actualizar Plato</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Actualizar Usuario</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-      
-    <form id="frmeditarBebida" onsubmit="actualizarGuardarPlato()"  action="" method="post">
-
-
-        <?php 
-
-    $conexionT= conectar();
-    mysqli_set_charset($conexionT,'utf8'); 
-    $sqlTipoBeb= "SELECT id,descripcion from tipo_platos where eliminado='NO' order by LENGTH(descripcion) desc";
-
-    $resultadoTipoB=mysqli_query($conexionT,$sqlTipoBeb);
-
-    mysqli_close($conexionT);
+        <form id="frmactualizar"  onsubmit="actualizarGuardarUsuario()"  action="" method="post">
     
-         ?>
-
-
- <br>
-  
-    <div class="row">
-        <div class="col-sm-3" >
-    <label >Tipo Plato <label style="color: red;">*</label></label>
-</div>
-  <div class="col-sm-6" >
-    <select  id="idTipoBebidaE"   name="idTipoBebidaE" class="mi-selectorTipoBeE"   required="true">
-                <?php
-
-                while ($valoresA = mysqli_fetch_array($resultadoTipoB)) {
-                    ?>
-                    <option  value="<?php print($valoresA['id']);?>"> <?php  print($valoresA['descripcion']);?> </option>
-
-                    <?php
-                }
-                ?>
-            </select>
-        
-        </div>   
-    </div>
-        <br>
-
-    <label>Tamaño<label style="color: red;">*</label></label>
-    <input type="text" class="form-control input-sm" id="tamanioBebidaE" name="tamanioBebidaE" required >
-    <label>Precio<label style="color: red;">*</label></label>
-    <input type="text" class="form-control input-sm" id="precioBebidaE" name="precioBebidaE" required >
-    <label>Cantidad Disponible<label style="color: red;">*</label></label>
-    <input type="text" class="form-control input-sm" id="cantDisponibleE" name="cantDisponibleE" required  >
-            
-    <label>Descripcion <label style="color: red;">*</label></label>
-    <input type="text" class="form-control input-sm" id="descripcionBebidaE" name="descripcionBebidaE" required >
-
-    <input type="text" class="form-control input-sm" id="idE" name="idE" hidden>
+<label>Usuario</label>
+    <input type="text" class="form-control input-sm" id="usuarioU" name="usuarioU" readonly="true" minlength="4" maxlength="19"> 
+    <label>Contraseña<label style="color: red;">*</label></label>
+    <input type="text" class="form-control input-sm" id="pwU" name="pwU" required minlength="4" maxlength="15">
+    <label>Nombre<label style="color: red;">*</label></label>
+     <input style="text-transform: capitalize;" type="text"  class="form-control input-sm" id="nombreU" name="nombreU" required minlength="4" maxlength="59" pattern="^[a-zA-Z\s]+">
+    <label>Apellido<label style="color: red;">*</label></label>
+     <input style="text-transform: capitalize;" type="text" class="form-control input-sm" id="apellidoU" name="apellidoU" required minlength="4" maxlength="39" pattern="^[a-zA-Z\s]+">
+    <label>Email<label style="color: red;">*</label></label>
+    <input type="email" class="form-control input-sm" id="correoU" name="correoU" required minlength="4" maxlength="59">
+    <label>DNI</label>
+    <input type="text" class="form-control input-sm" id="dniU" name="dniU"  maxlength="24" minlength="4" pattern="[0-9]+">
+     <label>Telefono</label>
+    <input type="text" class="form-control input-sm" id="telefonoU" name="telefonoU"  maxlength="29" minlength="4" pattern="[0-9]+">
     <br>
-  
+    
+    <p>Seleccione el permiso para su usuario:</p>
+
+    <div class="row">
+       <div class="col-sm">
+           <input type="radio" name="permisosE" id="padU"   value="administrador">Administrador</div>
+           <div class="col-sm"> <input type="radio" id="pgeU" name="permisosE" checked  value="gestor">Gestor</div>
+       </div>
+            <div class="row">
+       <div class="col-sm">
+           <input type="radio" name="permisosE" id="pveU"  value="vendedor">Vendedor</div>
+           <div class="col-sm"> 
+               <input type="radio" name="permisosE" id="pteU"  value="telemarketer">Telemarketer</div> 
+       </div>
 
 
-  <div class="modal-footer">
+
+    <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" id="btnAgregarNuevo" class="btn btn-primary" >Crear Nuevo</button>
+        <button type="submit" class="btn btn-warning" id="btnGuardar">Guardar</button>
       </div>
 
 </form>
 
-      </div>      
+
+      </div>
+      
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -493,25 +480,31 @@
 </html>
 
 
+
+
 <script type="text/javascript">
     $(document).ready(function(){
 
-        $('#tablaDatatable').load('tablaPlatos.php');
+        $('#contenedorMesas').load('cargarMisMesas.php');
     });
 
 
 </script>
 
+
+
 <script type="text/javascript">
-    function nuevoPlato(){
+    function nuevoUsuario(){
+
+
         datos=$('#frmnuevo').serialize();
         $.ajax({
             type:"POST",
             data:datos,
-            url:"procesos/agregarPlato.php",
+            url:"procesos/agregarUsuario.php",
             success:function(){
                     
-                    $('#tablaDatatable').load('tablaPlatos.php');
+                    $('#tablaDatatable').load('tablaUsuarios.php');
                     alertify.success("Se agrego correctamente");
                     
 
@@ -527,28 +520,117 @@
 
     }
 
+
 </script>
 
 
 
 <script type="text/javascript">
+    
+
+function actualizarGuardarUsuario(){
+        datos=$('#frmactualizar').serialize();
+        $.ajax({
+            type:"POST",
+            data:datos,
+            url:"procesos/actualizarUsuario.php",
+            success:function(){
+                
+                    $('#tablaDatatable').load('tablaUsuarios.php');
+                    alertify.success("Se actualizo correctamente");
+                    
+
+            },
+            error:function(){
+
+                alertify.success("No se pudo actualizar correctamente");
+                
+            }
+
+        });
+
+    }
+ 
+
+
+</script>
+
+
+<script type="text/javascript">
+
+$('#btnAgregarUsuarioNuevo').click(function(){
+datos=$('#frmnuevo').serialize();
+
+            $('#usuario').val('');
+            $('#pw').val('');
+            $('#nombre').val('');
+            $('#apellido').val('');
+            $('#correo').val('');
+
+});
 
 
 
 
 
+function actualizarUsuario(id){
+    $.ajax({
+        type:"POST",
+        data:"id=" + id,
+        url:"procesos/obtenerDatosUsuario.php",
+        success:function(r){
+            datos=jQuery.parseJSON(r);
+            $('#usuarioU').val(datos['usuario']);
+            $('#pwU').val(datos['pw']);
+            $('#nombreU').val(datos['nombre']);
+            $('#apellidoU').val(datos['apellido']);
+            $('#correoU').val(datos['correo']);
+            $('#dniU').val(datos['dni']);
+            $('#telefonoU').val(datos['telefono']);
+            $('#padU').removeAttr("checked");	
+			$('#pveU').removeAttr("checked");	
+            $('#pgeU').removeAttr("checked");	
+            $('#pteU').removeAttr("checked");	
+			if(datos['permisos']=='administrador'){
+				
+				$('#padU').attr('checked', 'checked');
+			
+
+			}
+			else if(datos['permisos']=='vendedor'){
+				
+				$('#pveU').attr('checked', 'checked');
+				
+			}
+            else if(datos['permisos']=='gestor'){
+				
+				$('#pgeU').attr('checked', 'checked');
+				
+			}
+            else{
+				
+				$('#pteU').attr('checked', 'checked');
+				
+			}
+
+            
+
+        }
+    });
+}
 
 
-function eliminarDatosPlato(id){
-    alertify.confirm('Eliminar Plato', '¿Esta seguro que desea eliminar este Plato?',
+
+function eliminarDatos(id){
+    alertify.confirm('Eliminar Usuario', '¿Esta seguro que desea eliminar el usuario?',
         function(){ 
                 $.ajax({
         type:"POST",
         data:"id=" + id,
-        url:"procesos/eliminarPlato.php",
+        url:"procesos/eliminarUsuario.php",
         success:function(r){
             
-                $('#tablaDatatable').load('tablaPlatos.php');
+                $('#tablaDatatable').load('tablaUsuarios.php');
                 alertify.success("Eliminado con exito");
             
                 
@@ -568,55 +650,9 @@ function eliminarDatosPlato(id){
 
 }
 
-
-function actualizarPlato(id){
-    $.ajax({
-        type:"POST",
-        data:"id=" + id,
-        url:"procesos/obtenerDatosPlato.php",
-        success:function(r){
-            datos=jQuery.parseJSON(r);
-            $('#descripcionBebidaE').val(datos['descripcion']);
-            $('#cantDisponibleE').val(datos['cantidad']);
-            $('#precioBebidaE').val(datos['precio']);
-            $('#tamanioBebidaE').val(datos['tamanio']); 
-              
-            $('#idE').val(datos['id']);
-            
-            $('#idTipoBebidaE').select2("val", datos['tipoBebida']);
-                
-            
-        }
-    });
-}
-
-
-
-
-function actualizarGuardarPlato(){
-        datos=$('#frmeditarBebida').serialize();
-        $.ajax({
-            type:"POST",
-            data:datos,
-            url:"procesos/actualizarPlato.php",
-            success:function(){
-                
-                    $('#tablaDatatable').load('tablaPlatos.php');
-                    alertify.success("Se actualizo correctamente");
-                    
-
-            },
-            error:function(){
-
-                alertify.success("No se pudo actualizar correctamente");
-                
-            }
-
-        });
-
-    }
-
 </script>
+
+
 
 <script type="text/javascript">
 
@@ -626,9 +662,6 @@ function actualizarGuardarPlato(){
         history.replace(history.forward(1));
     }
 </script>
-
-
-
 <script type="text/javascript">
     
 function redirPreVenta(){
@@ -642,9 +675,6 @@ window.location.href='preVenta.php?datos33='+ btoa(0);
 </script>
 
 
-
-
-
 <script type="text/javascript">
                 $(document).ready(function() {
                    
@@ -653,31 +683,5 @@ window.location.href='preVenta.php?datos33='+ btoa(0);
                 });
 </script>
 
-<script type="text/javascript">
-    
-      jQuery(document).ready(function($){
-    $(document).ready(function() {
-        $('.mi-selectorTipoBe').select2();
-    });
-
-    $(document).ready(function() {
-        $('.mi-selectorTipoBeE').select2();
-    });
 
 
-
-}); 
-</script>
-
-<script>
-
-if('<?php echo $_SESSION["permisos"];?>'=='2' || '<?php echo $_SESSION["permisos"];?>'=='3' ){
-    document.getElementById('linkUsuarios').hidden=true;
-    linkIndex.removeAttribute('href');
-
-
-
-}
-
-
-</script>
