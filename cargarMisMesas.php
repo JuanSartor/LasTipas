@@ -7,7 +7,7 @@ include ("clases/conexion.php");
 $conexion=conectar();
 
 
-$sqlT="SELECT c.id,c.mesas from comandas c where c.estado='0' and c.id_usuario_logueado='$_SESSION[idC]''";
+$sqlT="SELECT c.id,c.mesas from comandas c where c.estado='0' and c.id_usuario_logueado='$_SESSION[idC]'";
 
 $resultadoTod = mysqli_query($conexion,$sqlT);
 
@@ -15,6 +15,12 @@ $resultadoTod = mysqli_query($conexion,$sqlT);
 $arregloCantidaEleEnPos1=Array();
 $subArreglo= Array();
 $arregloPrevioAString=Array();
+
+
+
+
+$pos=0;
+$i=0;
 
 while ($mostrar=mysqli_fetch_array($resultadoTod)) {
 
@@ -36,7 +42,7 @@ if( $arregloCantidaEleEnPos1[$pos] > 1){
 
 }
 else{
-	$arregloPrevioAString[$i]=$valor;
+	$arregloPrevioAString[$i]=$mostrar[1];
 	
 	$i++;
 
@@ -63,7 +69,9 @@ foreach($arregloPrevioAString as &$valorids){
 
 // print($ids);
 
-$consulta = "SELECT id,numero FROM mesas WHERE id in (".$ids.")"; 
+
+// con esto traigo los pares de id y numero que coinciden con la consulta de las mesas
+$consulta = "SELECT id,numero FROM mesas WHERE id in (".$ids.") and eliminado='0'"; 
 
 
 $resultadiIds = mysqli_query($conexion,$consulta);
@@ -92,35 +100,74 @@ while ($mostrarids=mysqli_fetch_array($resultadiIds)) {
 }
 
 
-/// seguir de aca ver de copiar o reutilizar lo de tabla comanda
 
 
+$arregloFinal= Array();
 
 
+$cadaInsert='';
+$subcad='';
 
 
+$incremento=0;
+$incrementoMatriz=0;
 
+print_r($arregloCantidaEleEnPos1);
+
+
+// seguir de aca no se xq la variable incremente con el arrayNumeroMesas accedo a algo fuera de rango
+
+
+ foreach($arregloCantidaEleEnPos1 as &$cant){
+
+	if($cant>1){
+ 	for($j=0; $j<$cant; $j++){
+
+
+		$subcad=$subcad.$arrayNumeroMesas[$incremento].',';
+		$incremento++;
+
+	}
+
+
+	$cadaInsert=substr($subcad, 0, -1);
+	$subcad='';
+}
+else{
+
+	$cadaInsert=$arrayNumeroMesas[$incremento];
+	$incremento++;	
+
+
+}
+
+$arregloFinal[$incrementoMatriz]=$cadaInsert;
+
+$incrementoMatriz++;
+$cadaInsert='';
+
+ }
 
 
 
 
 
 $cadena='';
-		while ($mostrar=mysqli_fetch_array($resultadoTod)) {
+foreach($arregloFinal as &$eleId){
 
 			if($mostrar[1]=='0'){
 
 				$cadena=$cadena.'<button type="button" 
 				style="width: 110px; border-radius: 10px; padding: 10px; 
-				margin: 20px;"  title="Habilitada" class="btn btn-success mb-1" id="mesaN"'.$mostrar[2].'> 
-				<span  class="fas fa-tablets"></span> Mesa: '.$mostrar[2].' </button>';
+				margin: 20px;"  title="Habilitada" class="btn btn-success mb-1" id="mesaN"'.$eleId.'> 
+				<span  class="fas fa-tablets"></span> Mesa: '.$eleId.' </button>';
 
 			}
 			else{
 				$cadena=$cadena.'<button type="button" 
 				style="width: 110px; border-radius: 10px; padding: 10px; 
-				margin: 20px;" title="Ocupada" class="btn btn-danger mb-1" id="mesaN"'.$mostrar[2].'> 
-				<span  class="fas fa-tablets"></span> Mesa: '.$mostrar[2].' </button>';
+				margin: 20px;" title="Ocupada" class="btn btn-danger mb-1" id="mesaN"'.$eleId.'> 
+				<span  class="fas fa-tablets"></span> Mesa: '.$eleId.' </button>';
 
 			}
 
