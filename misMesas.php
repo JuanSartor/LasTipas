@@ -662,17 +662,6 @@ function eliminarDatos(id){
         history.replace(history.forward(1));
     }
 </script>
-<script type="text/javascript">
-    
-function redirPreVenta(){
-
-
-window.location.href='preVenta.php?datos33='+ btoa(0);
-
-                 
-}
-
-</script>
 
 
 <script type="text/javascript">
@@ -685,3 +674,14 @@ window.location.href='preVenta.php?datos33='+ btoa(0);
 
 
 
+<script type="text/javascript">
+    
+function irAComanda(numeroMesas){
+
+
+// window.location.href='preVenta.php?datos33='+ btoa(0);
+window.location.href='comandas.php?numeroMesas='+numeroMesas;
+                 
+}
+
+</script>

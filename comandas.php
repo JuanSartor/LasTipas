@@ -20,11 +20,19 @@
       
       
 
+if($_GET["numeroMesas"]!=null){
+
+    $NumeorMesas=$_GET["numeroMesas"];
+}
 
 
-      $mesas[]=$_GET["parametro"];
+// seguir de aca cargar las comandas de esta/s mesas
+// hacer un select q le permita ver todas las activas de la persona logueada y de los ultimos 2 dias
 
-     $_SESSION["mesasOcupadas"] =implode(",", $mesas);
+
+       
+
+    //  $_SESSION["mesasOcupadas"] =implode(",", $mesas);
 
 
 

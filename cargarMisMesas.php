@@ -11,6 +11,19 @@ $sqlT="SELECT c.id,c.mesas from comandas c where c.estado='0' and c.id_usuario_l
 
 $resultadoTod = mysqli_query($conexion,$sqlT);
 
+$matriz=Array($resultadoTod->num_rows);
+foreach($matriz as &$eleM){
+
+	$eleM=Array(3);
+}
+
+// en 0 guardo id de comanda
+// en 1 los id de las mesas
+// en 2 los numeros de las mesass
+
+
+
+
 
 $arregloCantidaEleEnPos1=Array();
 $subArreglo= Array();
@@ -22,7 +35,18 @@ $arregloPrevioAString=Array();
 $pos=0;
 $i=0;
 
+$incrementoMat=0;
+
 while ($mostrar=mysqli_fetch_array($resultadoTod)) {
+
+
+
+	$matriz[$incrementoMat][0]=$mostrar[0];
+	$matriz[$incrementoMat][1]=$mostrar[0];
+	$incrementoMat++;
+
+
+
 
 
 // creo array para los numeros de las mesas
@@ -71,7 +95,7 @@ foreach($arregloPrevioAString as &$valorids){
 
 
 // con esto traigo los pares de id y numero que coinciden con la consulta de las mesas
-$consulta = "SELECT id,numero FROM mesas WHERE id in (".$ids.") and eliminado='0'"; 
+$consulta = "SELECT id,numero FROM mesas WHERE id in (".$ids.") and eliminado='0' and estado='1'"; 
 
 
 $resultadiIds = mysqli_query($conexion,$consulta);
@@ -112,10 +136,10 @@ $subcad='';
 $incremento=0;
 $incrementoMatriz=0;
 
-print_r($arregloCantidaEleEnPos1);
+// print_r($arregloCantidaEleEnPos1);
 
 
-// seguir de aca no se xq la variable incremente con el arrayNumeroMesas accedo a algo fuera de rango
+
 
 
  foreach($arregloCantidaEleEnPos1 as &$cant){
@@ -143,6 +167,8 @@ else{
 
 $arregloFinal[$incrementoMatriz]=$cadaInsert;
 
+$matriz[$incrementoMatriz][2]=$cadaInsert;
+
 $incrementoMatriz++;
 $cadaInsert='';
 
@@ -151,25 +177,24 @@ $cadaInsert='';
 
 
 
-
 $cadena='';
-foreach($arregloFinal as &$eleId){
+foreach($matriz as &$elem){
 
-			if($mostrar[1]=='0'){
+			// if($elem[1]=='0'){
 
-				$cadena=$cadena.'<button type="button" 
+			// 	$cadena=$cadena.'<button type="button" 
+			// 	style="width: 110px; border-radius: 10px; padding: 10px; 
+			// 	margin: 20px;"  title="Habilitada" class="btn btn-success mb-1" id="mesaN"'.$eleId.'> 
+			// 	<span  class="fas fa-tablets"></span> Mesa: '.$eleId.' </button>';
+
+			// }
+			// else{
+				$cadena=$cadena.'<button type="button" onclick="irAComanda('.$elem[2].')"
 				style="width: 110px; border-radius: 10px; padding: 10px; 
-				margin: 20px;"  title="Habilitada" class="btn btn-success mb-1" id="mesaN"'.$eleId.'> 
-				<span  class="fas fa-tablets"></span> Mesa: '.$eleId.' </button>';
+				margin: 20px;" title="Ocupada" class="btn btn-danger mb-1" id="mesaN"'.$elem[2].'> 
+				<span  class="fas fa-tablets"></span> Mesa: '.$elem[2].' </button>';
 
-			}
-			else{
-				$cadena=$cadena.'<button type="button" 
-				style="width: 110px; border-radius: 10px; padding: 10px; 
-				margin: 20px;" title="Ocupada" class="btn btn-danger mb-1" id="mesaN"'.$eleId.'> 
-				<span  class="fas fa-tablets"></span> Mesa: '.$eleId.' </button>';
-
-			}
+			// }
 
 
 
