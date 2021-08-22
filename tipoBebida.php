@@ -156,7 +156,7 @@
                                
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="comandas.php"  aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-clipboard-list"></i>Comandas</a>
+                                <a class="nav-link"  href="comandas.php?banderaVista=1&idComanda=0"   aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-clipboard-list"></i>Comandas</a>
                                
                             </li>
 

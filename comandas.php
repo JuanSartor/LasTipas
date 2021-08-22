@@ -20,22 +20,6 @@
       
       
 
-if($_GET["numeroMesas"]!=null){
-
-    $NumeorMesas=$_GET["numeroMesas"];
-}
-
-
-// seguir de aca cargar las comandas de esta/s mesas
-// hacer un select q le permita ver todas las activas de la persona logueada y de los ultimos 2 dias
-
-
-       
-
-    //  $_SESSION["mesasOcupadas"] =implode(",", $mesas);
-
-
-
       ?>
 
 
@@ -253,19 +237,6 @@ if($_GET["numeroMesas"]!=null){
                         <br>
                         <br>
 
-
-                  
-                
-
-
-
-
-
-
-
-
-
-
                     <div class="card-body">
                     
 
@@ -414,7 +385,19 @@ if($_GET["numeroMesas"]!=null){
 <script type="text/javascript">
     $(document).ready(function(){
 
-        $('#tablaDatatable').load('tablaComandas.php');
+        
+        bandera= <?php echo $_GET['banderaVista']; ?>;
+       
+        if(bandera=='1'){
+          
+            $('#tablaDatatable').load('tablaComandas.php?banderaParaConsulta='+bandera);
+        }
+        else{
+            $('#tablaDatatable').load('tablaComandas.php?banderaParaConsulta='+bandera+'&idComandaMia='+<?php echo $_GET['idComanda']; ?>);
+        }
+
+     
+ 
     });
 
 

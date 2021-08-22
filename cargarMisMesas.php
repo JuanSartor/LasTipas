@@ -180,21 +180,14 @@ $cadaInsert='';
 $cadena='';
 foreach($matriz as &$elem){
 
-			// if($elem[1]=='0'){
-
-			// 	$cadena=$cadena.'<button type="button" 
-			// 	style="width: 110px; border-radius: 10px; padding: 10px; 
-			// 	margin: 20px;"  title="Habilitada" class="btn btn-success mb-1" id="mesaN"'.$eleId.'> 
-			// 	<span  class="fas fa-tablets"></span> Mesa: '.$eleId.' </button>';
-
-			// }
-			// else{
-				$cadena=$cadena.'<button type="button" onclick="irAComanda('.$elem[2].')"
+		
+				$separado_por_comas = implode(",", $elem);
+				$cadena=$cadena.'<button type="button" onclick="irAComanda('.$elem[0].')"
 				style="width: 110px; border-radius: 10px; padding: 10px; 
 				margin: 20px;" title="Ocupada" class="btn btn-danger mb-1" id="mesaN"'.$elem[2].'> 
 				<span  class="fas fa-tablets"></span> Mesa: '.$elem[2].' </button>';
 
-			// }
+			
 
 
 

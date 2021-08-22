@@ -8,10 +8,15 @@ include ("clases/conexion.php");
 $conexion=conectar();
 
 // el estado 0(cero) indica que la comanda todavia no fue cancelada, ni preparada, es decir esta en espera
-
+if($_GET['banderaParaConsulta']=='1'){
 $sql="SELECT c.id, c.mesas, c.estado, u.nombre, u.apellido  FROM comandas c, usuarios u, mesas m
 where c.estado=0 and c.id_usuario_logueado='$_SESSION[idC]'  and u.id=c.id_usuario_logueado and c.mesas=m.id ";
+}
+else{
+$sql="SELECT c.id, c.mesas, c.estado, u.nombre, u.apellido  FROM comandas c, usuarios u, mesas m
+where c.estado=0 and c.id_usuario_logueado='$_SESSION[idC]'  and u.id=c.id_usuario_logueado and c.mesas=m.id  and c.id='$_GET[idComandaMia]'";
 
+}
 
 $result = mysqli_query($conexion,$sql);
 

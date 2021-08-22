@@ -155,7 +155,7 @@
                                
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="comandas.php"  aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-clipboard-list"></i>Comandas</a>
+                                <a class="nav-link" href="comandas.php?banderaVista=1&idComanda=0"  aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-clipboard-list"></i>Comandas</a>
                                
                             </li>
                             <li class="nav-item">
@@ -493,164 +493,6 @@ mysqli_close($conexionMesasDisponibles);
 
 
 
-<script type="text/javascript">
-    function nuevoUsuario(){
-
-
-        datos=$('#frmnuevo').serialize();
-        $.ajax({
-            type:"POST",
-            data:datos,
-            url:"procesos/agregarUsuario.php",
-            success:function(){
-                    
-                    $('#tablaDatatable').load('tablaUsuarios.php');
-                    alertify.success("Se agrego correctamente");
-                    
-
-            },
-            error:function(){
-
-                alertify.success("No se pudo agregar correctamente");
-                
-            }
-
-
-        });
-
-    }
-
-
-</script>
-
-
-
-<script type="text/javascript">
-    
-
-function actualizarGuardarUsuario(){
-        datos=$('#frmactualizar').serialize();
-        $.ajax({
-            type:"POST",
-            data:datos,
-            url:"procesos/actualizarUsuario.php",
-            success:function(){
-                
-                    $('#tablaDatatable').load('tablaUsuarios.php');
-                    alertify.success("Se actualizo correctamente");
-                    
-
-            },
-            error:function(){
-
-                alertify.success("No se pudo actualizar correctamente");
-                
-            }
-
-        });
-
-    }
- 
-
-
-</script>
-
-
-<script type="text/javascript">
-
-$('#btnAgregarUsuarioNuevo').click(function(){
-datos=$('#frmnuevo').serialize();
-
-            $('#usuario').val('');
-            $('#pw').val('');
-            $('#nombre').val('');
-            $('#apellido').val('');
-            $('#correo').val('');
-
-});
-
-
-
-
-
-function actualizarUsuario(id){
-    $.ajax({
-        type:"POST",
-        data:"id=" + id,
-        url:"procesos/obtenerDatosUsuario.php",
-        success:function(r){
-            datos=jQuery.parseJSON(r);
-            $('#usuarioU').val(datos['usuario']);
-            $('#pwU').val(datos['pw']);
-            $('#nombreU').val(datos['nombre']);
-            $('#apellidoU').val(datos['apellido']);
-            $('#correoU').val(datos['correo']);
-            $('#dniU').val(datos['dni']);
-            $('#telefonoU').val(datos['telefono']);
-            $('#padU').removeAttr("checked");	
-			$('#pveU').removeAttr("checked");	
-            $('#pgeU').removeAttr("checked");	
-            $('#pteU').removeAttr("checked");	
-			if(datos['permisos']=='administrador'){
-				
-				$('#padU').attr('checked', 'checked');
-			
-
-			}
-			else if(datos['permisos']=='vendedor'){
-				
-				$('#pveU').attr('checked', 'checked');
-				
-			}
-            else if(datos['permisos']=='gestor'){
-				
-				$('#pgeU').attr('checked', 'checked');
-				
-			}
-            else{
-				
-				$('#pteU').attr('checked', 'checked');
-				
-			}
-
-            
-
-        }
-    });
-}
-
-
-
-function eliminarDatos(id){
-    alertify.confirm('Eliminar Usuario', '¿Esta seguro que desea eliminar el usuario?',
-        function(){ 
-                $.ajax({
-        type:"POST",
-        data:"id=" + id,
-        url:"procesos/eliminarUsuario.php",
-        success:function(r){
-            
-                $('#tablaDatatable').load('tablaUsuarios.php');
-                alertify.success("Eliminado con exito");
-            
-                
-        },
-        error: function(){
-
-            alertify.error("No se pudo eliminar");
-            
-
-        }
-    });
-
-        }
-        , function(){ });
-
-
-
-}
-
-</script>
 
 
 
@@ -676,11 +518,10 @@ function eliminarDatos(id){
 
 <script type="text/javascript">
     
-function irAComanda(numeroMesas){
+function irAComanda(idComandaMia){
 
 
-// window.location.href='preVenta.php?datos33='+ btoa(0);
-window.location.href='comandas.php?numeroMesas='+numeroMesas;
+ window.location.href='comandas.php?banderaVista='+2+'&idComanda='+idComandaMia;
                  
 }
 
