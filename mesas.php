@@ -726,9 +726,15 @@ function sacarMesa(){
  
 
 
-    function reiniciarMesas(){
+
+function reiniciarMesas(){
        
-        $.ajax({
+
+
+alertify.confirm("Reiniciar Mesas","Al reiniciar las mesas todas las comandas y cuentas pendientes seran cerradas",
+  function(){
+    // aca entre si confirma
+    $.ajax({
             type:"POST",
             url:"procesos/reiniciarMesas.php",
             success:function(r){
@@ -748,9 +754,13 @@ function sacarMesa(){
 
         });
 
-    }
+  },
+  function(){
+      //aca entra si cancela
 
+  }).set('labels', {ok:'Confirmar', cancel:'Cancelar'});
 
+}
 
 
 </script>

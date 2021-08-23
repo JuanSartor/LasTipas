@@ -871,10 +871,7 @@ function  iraPedir(){
 
 
 
-// lo siguiente seria validar q las mesas q estan en el arreglo esten desocupadas y no eliminadas
-// si es asi avanzo para pedir y las pongo en reservadas, si no cumplen con esto muestro mensaje
-// de mesas no disponibles
-
+// aca tenes q poner un modal con la lista de los clientes y si selecciona uno avanzas sino no
 
 
     $.ajax({
