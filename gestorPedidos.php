@@ -449,73 +449,38 @@ mysqli_close($conexionMesasDisponibles);
 
 
 
-<!-- Modal editar -->
-<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Actualizar Usuario</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="frmactualizar"  onsubmit="actualizarGuardarUsuario()"  action="" method="post">
-    
-<label>Usuario</label>
-    <input type="text" class="form-control input-sm" id="usuarioU" name="usuarioU" readonly="true" minlength="4" maxlength="19"> 
-    <label>Contraseña<label style="color: red;">*</label></label>
-    <input type="text" class="form-control input-sm" id="pwU" name="pwU" required minlength="4" maxlength="15">
-    <label>Nombre<label style="color: red;">*</label></label>
-     <input style="text-transform: capitalize;" type="text"  class="form-control input-sm" id="nombreU" name="nombreU" required minlength="4" maxlength="59" pattern="^[a-zA-Z\s]+">
-    <label>Apellido<label style="color: red;">*</label></label>
-     <input style="text-transform: capitalize;" type="text" class="form-control input-sm" id="apellidoU" name="apellidoU" required minlength="4" maxlength="39" pattern="^[a-zA-Z\s]+">
-    <label>Email<label style="color: red;">*</label></label>
-    <input type="email" class="form-control input-sm" id="correoU" name="correoU" required minlength="4" maxlength="59">
-    <label>DNI</label>
-    <input type="text" class="form-control input-sm" id="dniU" name="dniU"  maxlength="24" minlength="4" pattern="[0-9]+">
-     <label>Telefono</label>
-    <input type="text" class="form-control input-sm" id="telefonoU" name="telefonoU"  maxlength="29" minlength="4" pattern="[0-9]+">
-    <br>
-    
-    <p>Seleccione el permiso para su usuario:</p>
-
-    <div class="row">
-       <div class="col-sm">
-           <input type="radio" name="permisosE" id="padU"   value="administrador">Administrador</div>
-           <div class="col-sm"> <input type="radio" id="pgeU" name="permisosE" checked  value="gestor">Gestor</div>
-       </div>
-            <div class="row">
-       <div class="col-sm">
-           <input type="radio" name="permisosE" id="pveU"  value="vendedor">Vendedor</div>
-           <div class="col-sm"> 
-               <input type="radio" name="permisosE" id="pteU"  value="telemarketer">Telemarketer</div> 
-       </div>
-
-
-
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-warning" id="btnGuardar">Guardar</button>
-      </div>
-
-</form>
-
-
-      </div>
-      
-    </div>
-  </div>
-</div>
-
-
-
 
 
 
 
 </body>
  
+
+
+
+
+
+<!-- Modal lista clientes-->
+<div class="modal fade"   id="modalListaCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div  class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Seleccionar cliente a sentar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       
+<div id="divListaClientes"></div>
+
+      </div>
+  
+
+
+    </div>
+  </div>
+</div>
 </html>
 
 
@@ -525,171 +490,13 @@ mysqli_close($conexionMesasDisponibles);
     $(document).ready(function(){
 
         $('#contenedorMesas').load('cargarMesas.php');
+        $('#divListaClientes').load('cargarListaClientes.php');
     });
 
 
 </script>
 
 
-
-<script type="text/javascript">
-    function nuevoUsuario(){
-
-
-        datos=$('#frmnuevo').serialize();
-        $.ajax({
-            type:"POST",
-            data:datos,
-            url:"procesos/agregarUsuario.php",
-            success:function(){
-                    
-                    $('#tablaDatatable').load('tablaUsuarios.php');
-                    alertify.success("Se agrego correctamente");
-                    
-
-            },
-            error:function(){
-
-                alertify.success("No se pudo agregar correctamente");
-                
-            }
-
-
-        });
-
-    }
-
-
-</script>
-
-
-
-<script type="text/javascript">
-    
-
-function actualizarGuardarUsuario(){
-        datos=$('#frmactualizar').serialize();
-        $.ajax({
-            type:"POST",
-            data:datos,
-            url:"procesos/actualizarUsuario.php",
-            success:function(){
-                
-                    $('#tablaDatatable').load('tablaUsuarios.php');
-                    alertify.success("Se actualizo correctamente");
-                    
-
-            },
-            error:function(){
-
-                alertify.success("No se pudo actualizar correctamente");
-                
-            }
-
-        });
-
-    }
- 
-
-
-</script>
-
-
-<script type="text/javascript">
-
-$('#btnAgregarUsuarioNuevo').click(function(){
-datos=$('#frmnuevo').serialize();
-
-            $('#usuario').val('');
-            $('#pw').val('');
-            $('#nombre').val('');
-            $('#apellido').val('');
-            $('#correo').val('');
-
-});
-
-
-
-
-
-function actualizarUsuario(id){
-    $.ajax({
-        type:"POST",
-        data:"id=" + id,
-        url:"procesos/obtenerDatosUsuario.php",
-        success:function(r){
-            datos=jQuery.parseJSON(r);
-            $('#usuarioU').val(datos['usuario']);
-            $('#pwU').val(datos['pw']);
-            $('#nombreU').val(datos['nombre']);
-            $('#apellidoU').val(datos['apellido']);
-            $('#correoU').val(datos['correo']);
-            $('#dniU').val(datos['dni']);
-            $('#telefonoU').val(datos['telefono']);
-            $('#padU').removeAttr("checked");	
-			$('#pveU').removeAttr("checked");	
-            $('#pgeU').removeAttr("checked");	
-            $('#pteU').removeAttr("checked");	
-			if(datos['permisos']=='administrador'){
-				
-				$('#padU').attr('checked', 'checked');
-			
-
-			}
-			else if(datos['permisos']=='vendedor'){
-				
-				$('#pveU').attr('checked', 'checked');
-				
-			}
-            else if(datos['permisos']=='gestor'){
-				
-				$('#pgeU').attr('checked', 'checked');
-				
-			}
-            else{
-				
-				$('#pteU').attr('checked', 'checked');
-				
-			}
-
-            
-
-        }
-    });
-}
-
-
-
-function eliminarDatos(id){
-    alertify.confirm('Eliminar Usuario', '¿Esta seguro que desea eliminar el usuario?',
-        function(){ 
-                $.ajax({
-        type:"POST",
-        data:"id=" + id,
-        url:"procesos/eliminarUsuario.php",
-        success:function(r){
-            
-                $('#tablaDatatable').load('tablaUsuarios.php');
-                alertify.success("Eliminado con exito");
-            
-                
-        },
-        error: function(){
-
-            alertify.error("No se pudo eliminar");
-            
-
-        }
-    });
-
-        }
-        , function(){ });
-
-
-
-}
-
-</script>
 
 
 
@@ -701,21 +508,12 @@ function eliminarDatos(id){
         history.replace(history.forward(1));
     }
 </script>
-<script type="text/javascript">
-    
-function redirPreVenta(){
 
-
-window.location.href='preVenta.php?datos33='+ btoa(0);
-
-                 
-}
-
-</script>
 
 
 <script type="text/javascript">
                 $(document).ready(function() {
+                 
                    
                    $('#NombreLoguin').text('<?php echo $mostrarloguin['nombre'].' '.$mostrarloguin['apellido'];?>');
  
@@ -827,6 +625,9 @@ function sacarMesa(){
 
 <script type="text/javascript">
 
+var idCliente=0;
+
+
 var arreglo=[];
 
 
@@ -866,19 +667,26 @@ $('.mi-selectorMesasDisponibles').on("select2:select", function (e) {
 function  iraPedir(){
 
 
+           //console.log(arreglo);
+if(arreglo.length>0){
+    $('#modalListaCliente').modal('show')
+}
+else{
+    alertify.warning("Seleccione una mesa como minimo");
+}
 
-           console.log(arreglo);
+}
+ 
 
+function asociarClienteAMesass(idClienteRecibido){
+    idCliente=idClienteRecibido;
+    if(idCliente!=0){
 
-
-// aca tenes q poner un modal con la lista de los clientes y si selecciona uno avanzas sino no
-
-
-    $.ajax({
-            type:"POST",
-            data:"parametro=" + arreglo,
-            url:"procesos/validarMesas.php",
-            success:function(r){
+     $.ajax({
+             type:"POST",
+             data:"parametro=" + arreglo,
+             url:"procesos/validarMesas.php",
+             success:function(r){
                           
                  
                  datos=jQuery.parseJSON(r);
@@ -886,32 +694,30 @@ function  iraPedir(){
                  if(datos['bandera']=='0'){
 
 
-                    window.location.href="pedir.php?parametro="+arreglo;
+                    /// seguir de aca tenes q pasar el id del cliente tambien
+                     window.location.href="pedir.php?parametro="+arreglo;
 
 
 
 
 
-                 }
+                  }
                     else{    alertify.warning("Las mesas no estan disponibles");}
                     
 
             },
-            error:function(){
+             error:function(){
 
-                alertify.warning("Ocurrio un error");
+                 alertify.warning("Ocurrio un error");
                 
             }
 
         });
 
-
-
-
-
+   
+}
 
 }
- 
 
 
 
