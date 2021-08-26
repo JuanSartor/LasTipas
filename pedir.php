@@ -981,7 +981,7 @@ function cargarComanda(){
 $.ajax({
         type:"POST",
          data: {'listaElementos': JSON.stringify(arregloComandaFinal)},
-           url:"procesos/guardarComanda.php",
+           url:"procesos/guardarComanda.php?idClienteSel="+<?php echo $_GET['idClienteSel'];?>,
            success:function(r){
                
                    
@@ -1003,7 +1003,7 @@ $.ajax({
 
 
 
-       location.href ="comandas.php";
+       location.href ="comandas.php?banderaVista="+1+"&idComanda="+0;
 
 
 

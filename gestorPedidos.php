@@ -694,8 +694,8 @@ function asociarClienteAMesass(idClienteRecibido){
                  if(datos['bandera']=='0'){
 
 
-                    /// seguir de aca tenes q pasar el id del cliente tambien
-                     window.location.href="pedir.php?parametro="+arreglo;
+                 // pasa el arreglo y el id  del cliente seleccionado
+                     window.location.href="pedir.php?parametro="+arreglo+"&idClienteSel="+idCliente;
 
 
 

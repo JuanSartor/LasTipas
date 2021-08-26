@@ -18,8 +18,8 @@ $conexion= conectar();
 
 
 // mesas ocupadas representa los id de las mesas NO el nro de mesa
-$sqlNuevaComanda= "INSERT INTO comandas(mesas,id_usuario_logueado) 
-		VALUES ('$_SESSION[mesasOcupadas]','$_SESSION[idC]')";
+$sqlNuevaComanda= "INSERT INTO comandas(mesas,id_usuario_logueado,id_cliente) 
+		VALUES ('$_SESSION[mesasOcupadas]','$_SESSION[idC]','$_GET[idClienteSel]')";
 
 mysqli_query($conexion,$sqlNuevaComanda);
 
