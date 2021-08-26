@@ -1003,7 +1003,7 @@ $.ajax({
 
 
 
-       location.href ="comandas.php?banderaVista="+1+"&idComanda="+0;
+       location.href ="comandas.php?banderaVista="+1+"&idComanda="+0+'&numMesas='+0;
 
 
 
