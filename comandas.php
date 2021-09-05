@@ -313,7 +313,7 @@
              $('#tablaDatatable').load('tablaComandas.php?banderaParaConsulta=' + bandera + '&idComandaMia=' + <?php echo $_GET['idComanda']; ?>);
              document.getElementById("textMesa").hidden = false;
              document.getElementById("numMesas").hidden = false;
-             document.getElementById("numMesas").textContent = <?php echo $_GET['numMesas']; ?>;
+             document.getElementById("numMesas").textContent = <?php echo  str_replace("000", ".",  (string)$_GET['numMesas']); ?>;
              document.getElementById("btnCerrarMesa").hidden = false;
 
          }
