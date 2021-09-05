@@ -212,7 +212,7 @@
 
                                      <hr>
                                      <br>
-                                     <button type="button" hidden id="btnCerrarMesa" class="btn btn-primary" style="border-radius: 5px;"><i class="fas fa-file-invoice-dollar" style="padding-right:5px;"></i>Cerrar Mesa</button>
+                                     <button type="button" hidden id="btnCerrarMesa" onclick="solicitarCierre()" class="btn btn-primary" style="border-radius: 5px;"><i class="fas fa-file-invoice-dollar" style="padding-right:5px;"></i>Cerrar Mesa</button>
 
 
                                  </div>
@@ -324,6 +324,49 @@
      function mostrarComanda(id) {
 
          $('#tablaDatatableComanda').load('tablaDetalleComandas.php?IdComanda=' + id);
+
+     }
+ </script>
+
+ <script>
+     function solicitarCierre() {
+
+         alertify.confirm("Solicitud de cuenta", "Desear cerrar las mesas y pedir su cuenta",
+             function() {
+                 $.ajax({
+                     type: "POST",
+                     data: "idComanda=" + <?php echo $_GET['idComanda']; ?>,
+                     url: "procesos/solicitarCierreMesa.php",
+                     success: function(r) {
+
+
+                         alertify.success('Cierre enviado');
+
+                         datos = jQuery.parseJSON(r);
+
+                         console.log(datos['mesas']);
+
+
+
+                     },
+                     error: function() {
+
+                         alertify.error("Solicitud cancelada");
+
+
+                     }
+                 });
+
+
+
+
+             },
+             function() {
+
+             }).set('labels', {
+             ok: 'Confirmar',
+             cancel: 'Cancelar'
+         });
 
      }
  </script>
