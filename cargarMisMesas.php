@@ -99,7 +99,7 @@ $resultadiIds = mysqli_query($conexion, $consulta);
 //este array tiene los numeros de mesas en orden
 $arrayNumeroMesas = array();
 
-if ($resultadiIds) {
+if (mysqli_num_rows($resultadiIds) >0) {
 	while ($mostrarids = mysqli_fetch_array($resultadiIds)) {
 
 		foreach ($arregloPrevioAString as &$elemento) {

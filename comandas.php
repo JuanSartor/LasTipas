@@ -338,7 +338,7 @@
                      data: "idComanda=" + <?php echo $_GET['idComanda']; ?>,
                      url: "procesos/solicitarCierreMesa.php",
                      success: function(r) {
-
+                        
 
                          alertify.success('Cierre enviado');
 
