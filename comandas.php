@@ -198,10 +198,17 @@
 
                          <div class="card text-center">
                              <div class="card-header">
+                                 COMANDAS
                                  <br>
-
-                                 <strong id="textMesa" hidden>Mesa:</strong>
-                                 <strong id="numMesas" hidden></strong>
+                                 <div class="row">
+                                     <div class="col-sm-6" style="text-align: left;">
+                                         <strong id="textMesa" hidden>Mesa:</strong>
+                                         <strong id="numMesas" hidden></strong>
+                                     </div>
+                                     <div class="col-sm-6" style="text-align: right;">
+                                     <strong id="textSolicitudCierre" hidden style="color: #BB4361; "> HA SOLICITADO EL CIERRE DE ESTA MESA</strong>
+                                     </div>
+                                 </div>
                                  <br>
                                  <br>
 
@@ -309,13 +316,19 @@
          if (bandera == '1') {
 
              $('#tablaDatatable').load('tablaComandas.php?banderaParaConsulta=' + bandera);
-         } else {
+         } else if (bandera == '2') {
              $('#tablaDatatable').load('tablaComandas.php?banderaParaConsulta=' + bandera + '&idComandaMia=' + <?php echo $_GET['idComanda']; ?>);
              document.getElementById("textMesa").hidden = false;
              document.getElementById("numMesas").hidden = false;
              document.getElementById("numMesas").textContent = <?php echo  str_replace("000", ".",  (string)$_GET['numMesas']); ?>;
              document.getElementById("btnCerrarMesa").hidden = false;
 
+         } else {
+             $('#tablaDatatable').load('tablaComandas.php?banderaParaConsulta=' + bandera + '&idComandaMia=' + <?php echo $_GET['idComanda']; ?>);
+             document.getElementById("textMesa").hidden = false;
+             document.getElementById("numMesas").hidden = false;
+             document.getElementById("numMesas").textContent = <?php echo  str_replace("000", ".",  (string)$_GET['numMesas']); ?>;
+             document.getElementById("textSolicitudCierre").hidden = false;        
          }
 
      });
@@ -338,27 +351,14 @@
                      data: "idComanda=" + <?php echo $_GET['idComanda']; ?>,
                      url: "procesos/solicitarCierreMesa.php",
                      success: function(r) {
-                        
-
                          alertify.success('Cierre enviado');
-
-                         datos = jQuery.parseJSON(r);
-
-                         console.log(datos['mesas']);
-
-
+                         window.location.href = 'misMesas.php';
 
                      },
                      error: function() {
-
                          alertify.error("Solicitud cancelada");
-
-
                      }
                  });
-
-
-
 
              },
              function() {
@@ -367,6 +367,5 @@
              ok: 'Confirmar',
              cancel: 'Cancelar'
          });
-
      }
  </script>

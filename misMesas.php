@@ -516,12 +516,15 @@
 
  <script type="text/javascript">
      //con este metodo voy a misMesas y paso los parametros
-     function irAComanda(idComandaMia, numMesas) {
+     function irAComanda(idComandaMia, numMesas,bandera) {
 
 
-
-
+        if(bandera=='1'){
          window.location.href = 'comandas.php?banderaVista=' + 2 + '&idComanda=' + idComandaMia + '&numMesas=' + numMesas;
+        }
+        else{
+            window.location.href = 'comandas.php?banderaVista=' + 3 + '&idComanda=' + idComandaMia + '&numMesas=' + numMesas;
+        }
 
      }
  </script>
